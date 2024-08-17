@@ -1,0 +1,57 @@
+<mat-toolbar role="heading">
+  <mat-toolbar-row class="breadcrumbs-row" *ngIf="breadcrumbs?.length || title">
+    <div class="wrapper">
+      <div
+        class="breadcrumb"
+        *ngFor="let breadcrumb of breadcrumbs; index as i"
+      >
+        <div *ngIf="i">
+          <mat-icon>chevron_right</mat-icon>
+        </div>
+        <a [routerLink]="breadcrumb.link" [title]="breadcrumb.label">
+          <span>{{ breadcrumb.label }}</span>
+        </a>
+      </div>
+      <div class="breadcrumb title" *ngIf="title">
+        <div *ngIf="breadcrumbs?.length">
+          <mat-icon>chevron_right</mat-icon>
+        </div>
+        <a [routerLink]="['./']" [title]="title">
+          <span>{{ title }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <ng-container
+        *ngTemplateOutlet="contentAsReusableTemplate"
+      ></ng-container>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row class="tabs-row" *ngIf="tabs">
+    <div class="nav-bar-container">
+      <div class="nav-bar-wrapper">
+        <nav mat-tab-nav-bar disableRipple>
+          <a
+            mat-tab-link
+            *ngFor="let tab of tabs"
+            [routerLink]="tab.link"
+            routerLinkActive
+            #rla="routerLinkActive"
+            [active]="rla.isActive"
+            >{{ tab.label }}</a
+          >
+        </nav>
+      </div>
+      <div class="content-wrapper">
+        <ng-container
+          *ngTemplateOutlet="contentAsReusableTemplate"
+        ></ng-container>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<ng-template #contentAsReusableTemplate>
+  <ng-content></ng-content>
+</ng-template>

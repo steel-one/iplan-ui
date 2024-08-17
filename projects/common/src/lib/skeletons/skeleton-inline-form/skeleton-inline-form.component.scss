@@ -1,0 +1,23 @@
+.mat-mdc-table .mat-mdc-row {
+  border-bottom-width: 0;
+}
+
+.mat-mdc-header-row {
+  border-bottom-width: 0;
+}
+
+.list-item-skeleton {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  height: 72px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  & > div:first-child {
+    margin-bottom: 8px;
+  }
+}

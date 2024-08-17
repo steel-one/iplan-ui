@@ -1,0 +1,90 @@
+@import "theme_variables";
+
+a {
+  text-decoration: none;
+}
+
+.mat-toolbar {
+  background-color: white;
+  letter-spacing: 0;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: auto;
+}
+
+.wrapper {
+  display: flex;
+  height: 14px;
+  margin-left: -8px;
+}
+
+.mat-toolbar-row {
+  padding-left: 24px;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+// BREADCRUMBS
+.breadcrumbs-row {
+  height: 56px;
+  align-items: center;
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    color: rgba(black, 0.6);
+
+    a span {
+      font-size: 13px;
+    }
+
+    &:last-child a span {
+      color: #005594;
+      font-size: 16px;
+    }
+
+    .mat-mdc-button {
+      min-width: auto;
+      padding: 0 8px;
+    }
+  }
+
+  .mat-icon {
+    display: flex;
+    align-items: center;
+    margin: auto -8px;
+  }
+}
+
+// TABS
+.tabs-row {
+  height: 56px;
+  padding-left: 0;
+  box-shadow: 0 -1px 0px 0 rgba(black, 0.18);
+
+  .nav-bar-container {
+    height: 100%;
+    padding: 0;
+  }
+
+  .nav-bar-wrapper {
+    min-width: 500px;
+    align-self: flex-end;
+  }
+
+  .mat-mdc-tab-nav-bar {
+    .mat-mdc-tab-link {
+      min-width: auto;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}

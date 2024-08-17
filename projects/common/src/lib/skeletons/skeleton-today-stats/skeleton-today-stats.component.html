@@ -1,0 +1,27 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-subtitle
+      ><skeleton-item style="width: 160"></skeleton-item
+    ></mat-card-subtitle>
+    <mat-card-title
+      ><skeleton-item style="width: 180px"></skeleton-item
+    ></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-table [dataSource]="dataSource">
+      <ng-container
+        *ngFor="let name of displayedColumns"
+        matColumnDef="{{ name }}"
+      >
+        <mat-cell *matCellDef="let element" [class]="name">
+          <skeleton-item
+            [ngStyle]="{
+              width: name === 'col2' ? getWidth(20, 25) : getWidth()
+            }"
+          ></skeleton-item>
+        </mat-cell>
+      </ng-container>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>
