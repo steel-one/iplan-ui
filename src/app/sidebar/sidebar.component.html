@@ -1,0 +1,75 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav
+    fixedInViewport="true"
+    mode="side"
+    opened
+    [ngStyle]="{ width: (srv.openState$ | async) ? '200px' : '60px' }"
+  >
+    <ng-container
+      *ngIf="srv.openState$ | async; then openTmpl; else closedTmpl"
+    ></ng-container>
+
+    <!-- OPEN -->
+    <ng-template #openTmpl>
+      <div id="open">
+        <div class="logo">
+          <img src="/assets/logo.svg" title="IPlan" />
+        </div>
+
+        <mat-nav-list class="top-divider">
+          <a mat-list-item routerLinkActive="active">
+            <div class="item-content">
+              <mat-icon>event_note</mat-icon>
+              <span class="mat-body-strong" title="Planning">Planning</span>
+            </div>
+          </a>
+        </mat-nav-list>
+
+        <div style="flex: 1"></div>
+
+        <div class="legal">
+          <p class="mat-caption">
+            <span>&copy; {{ srv.currentDate }} Steelone, Inc.</span> <br />
+            <span>All rights reserved.</span>
+          </p>
+          <button mat-icon-button (click)="srv.toggleState()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <!-- / OPEN -->
+
+    <!-- CLOSED -->
+    <ng-template #closedTmpl>
+      <div id="closed">
+        <div class="logo" matTooltip="IPlan">
+          <img src="/assets/logo.svg" />
+        </div>
+
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" matTooltip="Planning">
+            <div class="item-content">
+              <mat-icon>event_note</mat-icon>
+            </div>
+          </a>
+        </mat-nav-list>
+
+        <div style="flex: 1"></div>
+
+        <div class="legal">
+          <button mat-icon-button (click)="srv.toggleState()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <!-- / CLOSED -->
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div id="router-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

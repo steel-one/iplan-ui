@@ -1,0 +1,147 @@
+@use '@angular/material' as mat;
+@import 'theme_variables';
+
+#router-wrapper {
+  overflow: auto;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}
+
+.mat-sidenav {
+  background-color: #016f41;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+}
+
+.logo {
+  height: 48px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.mat-mdc-nav-list {
+  padding: 8px 0;
+
+  &.wrapped-list {
+    padding: 0;
+    box-shadow: 0 1px 0 $light-dividers, 0 -1px 0 $light-dividers;
+  }
+
+  &.top-divider {
+    padding: 0;
+    box-shadow: 0 -1px 0 $light-dividers;
+  }
+
+  .mat-mdc-list-item {
+    &.active {
+      color: $light-primary-text;
+    }
+
+    .item-content {
+      color: $light-secondary-text;
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .mat-icon {
+      $icon-size: 20px;
+      line-height: $icon-size;
+      font-size: $icon-size;
+      height: $icon-size;
+      width: $icon-size;
+    }
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+  }
+}
+
+.legal {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    width: 161px;
+    color: $light-secondary-text;
+    margin: 0;
+  }
+
+  button {
+    align-items: center;
+    color: $light-secondary-text;
+
+    .mat-icon {
+      $icon-size: 24px;
+      line-height: $icon-size;
+      font-size: $icon-size;
+      height: $icon-size;
+      width: $icon-size;
+    }
+  }
+}
+
+#open,
+#closed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#open {
+  .logo {
+    padding: 0 16px;
+    img {
+      height: 23px;
+    }
+  }
+  .mat-mdc-list-item .item-content span {
+    margin-left: 16px;
+  }
+  .visual-indicator div {
+    $size: 12px;
+    height: $size;
+    width: $size;
+    border-radius: $size;
+    background-color: map_get(mat.$red-palette, 400);
+  }
+  .legal {
+    padding: 16px;
+  }
+}
+
+#closed {
+  .logo {
+    justify-content: center;
+    img {
+      height: 20px;
+    }
+  }
+  .visual-indicator {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    div {
+      $size: 8px;
+      height: $size;
+      width: $size;
+      border-radius: $size;
+      background-color: map_get(mat.$red-palette, 400);
+    }
+  }
+  .legal {
+    padding: 16px 0px;
+  }
+}

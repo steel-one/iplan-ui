@@ -7,6 +7,9 @@ import { AppUpdaterService } from './app-updater.service';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { LoaderModule } from './loader/loader.module';
+import { SidebarModule } from './sidebar/sidebar.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AppConfigService } from './app-config.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,14 +21,10 @@ import { LoaderModule } from './loader/loader.module';
       enabled: !isDevMode(),
       registrationStrategy: 'registerImmediately',
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
+    SidebarModule,
+    HttpClientModule,
   ],
-  providers: [AppService, AppUpdaterService],
+  providers: [AppService, AppUpdaterService, AppConfigService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
