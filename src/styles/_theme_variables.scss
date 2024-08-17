@@ -1,32 +1,46 @@
 @use '@angular/material' as mat;
 
-$blue-palette: (
-  50: #e1f5fd,
-  100: #b3e5f9,
-  200: #82d4f6,
-  300: #52c2f1,
-  400: #2eb5f0,
-  500: #0fa8ed,
-  600: #21a3dd,
-  700: #0588cb,
-  800: #0477b7,
-  900: #005795,
-  contrast: (
-    50: #000,
-    100: #000,
-    200: #000,
-    300: #000,
-    400: #000,
-    500: #000,
-    600: #000,
-    700: #e1f5fd,
-    800: #e1f5fd,
-    900: #e1f5fd,
+$green-palette: (
+  primary: (
+    0: #000000,
+    10: #002110,
+    20: #00391f,
+    25: #004526,
+    30: #00522f,
+    35: #005f37,
+    40: #006d3f,
+    50: #2a8756,
+    60: #48a16e,
+    70: #64bd87,
+    80: #7fd9a1,
+    90: #9bf6bb,
+    95: #c1ffd4,
+    98: #e9ffec,
+    99: #f5fff4,
+    100: #ffffff,
+  ),
+  secondary: (
+    0: #000000,
+    10: #012110,
+    20: #173724,
+    25: #22422e,
+    30: #2e4d39,
+    35: #395944,
+    40: #456650,
+    50: #5d7f67,
+    60: #769980,
+    70: #90b49a,
+    80: #abcfb4,
+    90: #c7ebcf,
+    95: #d5fadd,
+    98: #e9ffec,
+    99: #f5fff4,
+    100: #ffffff,
   ),
 );
 
 $primary-palette: mat.m2-define-palette(mat.$m2-blue-grey-palette, 900);
-$accent-palette: mat.m2-define-palette(mat.$m2-blue-palette, 900);
+$accent-palette: mat.m2-define-palette(mat.$m2-green-palette, 900);
 $warn-palette: mat.m2-define-palette(mat.$m2-red-palette, 400);
 
 $light-theme: mat.m2-define-light-theme(
@@ -43,7 +57,7 @@ $light-theme: mat.m2-define-light-theme(
 $primary: mat.m2-get-color-from-palette($primary-palette);
 $accent: mat.m2-get-color-from-palette($accent-palette);
 
-$ph-green: #1fa647;
+$ph-green: #016f41;
 $ph-yellow: #fdd835;
 $ph-red: #ef5350;
 $ph-orange: #f8a55c;

@@ -3,9 +3,7 @@
   <div class="right">
     <button mat-flat-button disableRipple [matMenuTriggerFor]="menu">
       <ng-container *ngIf="user$ | async as user">
-        <ng-container
-          *ngIf="user.name; then nameTmpl; else emailTmpl"
-        ></ng-container>
+        <ng-container *ngIf="user.name; then nameTmpl; else emailTmpl"></ng-container>
         <ng-template #nameTmpl>
           <span [matTooltip]="user.email" matTooltipPosition="below">{{
             user.name
@@ -23,6 +21,6 @@
 <mat-menu #menu="matMenu" xPosition="before">
   <button mat-menu-item routerLink="/auth/logout">
     <mat-icon>power_settings_new</mat-icon>
-    <span>Sign Out</span>
+    <span>Log Out</span>
   </button>
 </mat-menu>
