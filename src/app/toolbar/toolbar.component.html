@@ -1,0 +1,28 @@
+<mat-toolbar>
+  <div class="left"></div>
+  <div class="right">
+    <button mat-flat-button disableRipple [matMenuTriggerFor]="menu">
+      <ng-container *ngIf="user$ | async as user">
+        <ng-container
+          *ngIf="user.name; then nameTmpl; else emailTmpl"
+        ></ng-container>
+        <ng-template #nameTmpl>
+          <span [matTooltip]="user.email" matTooltipPosition="below">{{
+            user.name
+          }}</span>
+        </ng-template>
+        <ng-template #emailTmpl>
+          <span>{{ user.email }}</span>
+        </ng-template>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </ng-container>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu" xPosition="before">
+  <button mat-menu-item routerLink="/auth/logout">
+    <mat-icon>power_settings_new</mat-icon>
+    <span>Sign Out</span>
+  </button>
+</mat-menu>

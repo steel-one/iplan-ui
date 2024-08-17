@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { ToolbarModule } from '../toolbar/toolbar.module';
 import { SidebarComponent } from './sidebar.component';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SidebarComponent } from './sidebar.component';
     MatMenuModule,
     MatSidenavModule,
     MatTooltipModule,
+    ToolbarModule,
   ],
   exports: [SidebarComponent],
   providers: [{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: { position: 'right' } }],

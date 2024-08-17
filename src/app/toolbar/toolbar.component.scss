@@ -1,0 +1,46 @@
+@import 'theme_variables';
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  background-color: white;
+}
+
+button {
+  font-size: 12px;
+  font-weight: 400;
+  .mat-icon {
+    $icon-size: 20px;
+    line-height: $icon-size;
+    font-size: $icon-size;
+    height: $icon-size;
+    width: $icon-size;
+  }
+}
+
+.left button {
+  margin-left: -8px;
+}
+
+.right button {
+  margin-right: -8px;
+}
+
+.left,
+.right {
+  button span {
+    margin-right: 8px;
+  }
+}
+
+.mat-mdc-menu-item {
+  width: 156px;
+  .mat-icon {
+    $icon-size: 20px;
+    line-height: $icon-size;
+    font-size: $icon-size;
+    height: $icon-size;
+    width: $icon-size;
+  }
+}
