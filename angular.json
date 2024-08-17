@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "teachers-helper": {
+    "iplan": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,13 +17,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/teachers-helper",
+            "outputPath": "dist/iplan",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
@@ -31,7 +31,8 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
-            }
+            },
+            "serviceWorker": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -47,7 +48,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -61,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "teachers-helper:build:production"
+              "buildTarget": "iplan:build:production"
             },
             "development": {
-              "buildTarget": "teachers-helper:build:development"
+              "buildTarget": "iplan:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "teachers-helper:build"
+            "buildTarget": "iplan:build"
           }
         },
         "test": {
@@ -81,7 +83,7 @@
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": ["src/favicon.ico", "src/assets", "src/manifest.webmanifest"],
             "styles": [
               "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
