@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+@import 'fonts';
+@import 'material_icons';
+@import 'theme_variables';
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: seagreen;
+  color: white;
+}
