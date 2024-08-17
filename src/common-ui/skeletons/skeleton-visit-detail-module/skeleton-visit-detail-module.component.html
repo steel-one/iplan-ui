@@ -1,0 +1,31 @@
+<div>
+  <mat-table [dataSource]="dataSource">
+    <ng-container
+      *ngFor="let name of displayedColumns"
+      matColumnDef="{{ name }}"
+    >
+      <mat-header-cell
+        *matHeaderCellDef
+        class="fixIE11verticallyCentered"
+        style="padding: 0"
+      >
+        <skeleton-item style="width: 60px"></skeleton-item>
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let element"
+        class="fixIE11verticallyCentered"
+        style="padding: 0"
+      >
+        <skeleton-item style="width: 100%"></skeleton-item>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row
+      *matHeaderRowDef="displayedColumns"
+      style="min-height: 72px"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      style="min-height: 25px"
+    ></mat-row>
+  </mat-table>
+</div>

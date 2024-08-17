@@ -1,0 +1,32 @@
+<mat-card style="width: 220px; padding: 16px 24px">
+  <div style="display: flex">
+    <div style="display: flex; align-items: center; margin-right: 24px">
+      <skeleton-item style="width: 44px; height: 44px"></skeleton-item>
+    </div>
+
+    <mat-table [dataSource]="dataSource">
+      <ng-container
+        *ngFor="let name of displayedColumns"
+        matColumnDef="{{ name }}"
+      >
+        <mat-header-cell
+          *matHeaderCellDef
+          class="fixIE11verticallyCentered"
+          style="padding: 0"
+        >
+          <skeleton-item style="width: 100%"></skeleton-item>
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="fixIE11verticallyCentered"
+          style="padding: 0"
+        >
+          <skeleton-item style="width: 60px"></skeleton-item>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+</mat-card>
