@@ -1,3 +1,4 @@
 {
-  "ROOT_DOMAIN": "http://localhost:4200/"
+  "AUTH_DOMAIN": "http://localhost:3000",
+  "BFF_GRAPHQL_URL": "http://localhost:4001/graphql"
 }
