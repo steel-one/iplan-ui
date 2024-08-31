@@ -1,0 +1,47 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+form {
+  max-width: 300px;
+  margin: auto;
+
+  .header {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .divider {
+    border: solid 2px grey;
+  }
+
+  .actions {
+    button {
+      color: white;
+      display: block;
+      margin: 15px 0;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      button {
+        &.yandex {
+          color: black;
+          background-color: #ffcc01;
+        }
+        &.google {
+          background-color: #33a852;
+        }
+      }
+    }
+  }
+}

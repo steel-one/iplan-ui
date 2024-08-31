@@ -8,9 +8,13 @@ import { ToolbarService } from './toolbar.service';
   providers: [ToolbarService],
 })
 export class ToolbarComponent {
-  constructor(private srv: ToolbarService) {}
+  constructor(public srv: ToolbarService) {}
 
   get user$() {
     return this.srv.user$;
+  }
+
+  get admin$() {
+    return this.srv.admin$;
   }
 }

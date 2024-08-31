@@ -3,7 +3,11 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "common": ["dist/common"]
+      "common": ["dist/common"],
+      "@models/*": [
+        "./app/models/*", // fix TS
+        "./src/app/models/*" // fix VSCode
+      ]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

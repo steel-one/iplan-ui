@@ -1,0 +1,72 @@
+<form [formGroup]="loginForm">
+  <div class="header">Login to your account</div>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="email"
+      id="email"
+      placeholder="Email"
+      autocomplete="off"
+      formControlName="email"
+      required
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      type="password"
+      id="password"
+      placeholder="Password"
+      autocomplete="off"
+      formControlName="password"
+      required
+    />
+  </mat-form-field>
+  <div class="divider"></div>
+  <div class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      (click)="login()"
+      [disabled]="!loginForm.valid"
+    >
+      <mat-icon mat-icon>login</mat-icon>
+      Login
+    </button>
+    <a href="/api/auth/yandex">
+      <button
+        mat-stroked-button
+        type="button"
+        class="yandex"
+        (click)="yandexLogin = 'Please wait... ⌛'"
+      >
+        {{ yandexLogin }}
+      </button>
+    </a>
+    <a href="/api/auth/google">
+      <button
+        mat-stroked-button
+        type="button"
+        class="google"
+        (click)="googleLogin = 'Please wait... ⌛'"
+      >
+        {{ googleLogin }}
+        <mat-icon mat-icon
+          ><img
+            src="../../../../assets/g-normal.png"
+            width="20px"
+          />google</mat-icon
+        >
+      </button>
+    </a>
+    <button mat-flat-button type="button" routerLink="/signup">
+      Sign up
+    </button>
+    <button mat-flat-button type="button" routerLink="/recover">
+      Recover password
+    </button>
+  </div>
+</form>
