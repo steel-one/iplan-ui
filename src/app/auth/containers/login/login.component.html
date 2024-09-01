@@ -32,6 +32,7 @@
       type="submit"
       (click)="login()"
       [disabled]="!loginForm.valid"
+      style="height: 45px"
     >
       <mat-icon mat-icon>login</mat-icon>
       Login
@@ -42,8 +43,10 @@
         type="button"
         class="yandex"
         (click)="yandexLogin = 'Please wait... ⌛'"
+        style="height: 45px"
       >
-        {{ yandexLogin }}
+        Login with
+        <img src="../../../../assets/yandex.png" />
       </button>
     </a>
     <a href="/api/auth/google">
@@ -52,14 +55,10 @@
         type="button"
         class="google"
         (click)="googleLogin = 'Please wait... ⌛'"
+        style="height: 45px"
       >
-        {{ googleLogin }}
-        <mat-icon mat-icon
-          ><img
-            src="../../../../assets/g-normal.png"
-            width="20px"
-          />google</mat-icon
-        >
+        Login with
+        <img src="../../../../assets/google.png" />
       </button>
     </a>
     <button mat-flat-button type="button" routerLink="/signup">

@@ -19,8 +19,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  yandexLogin = 'Login with Yandex';
-  googleLogin = 'Login with Google';
+  yandexLogin = 'Login with';
+  googleLogin = 'Login with';
 
   constructor(
     private authService: AuthService,
