@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 
+import { MatIconModule } from '@angular/material/icon';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthInterceptor } from './auth.interceptor';
 import { OtpComponent } from './components/otp-dialog/otp.component';
@@ -19,7 +20,6 @@ import { RecoverComponent } from './containers/recover/recover.component';
 import { SignupComponent } from './containers/signup/signup.component';
 import { ForRolesDirective } from './directives/for-roles.directive';
 import { authStrategyProvider } from './services/auth.strategy';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [

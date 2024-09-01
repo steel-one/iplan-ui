@@ -29,26 +29,20 @@ form {
       display: block;
       margin: 15px 0;
       width: 100%;
-    }
-
-    a {
-      text-decoration: none;
-      button {
-        * {
-          padding: 0 8px;
-        }
-        img {
-          display: inline;
-          width: 60px;
-          height: fit-content;
-        }
-        &.yandex {
-          color: black;
-          background-color: #ffcc01;
-        }
-        &.google {
-          background-color: #33a852;
-        }
+      * {
+        padding: 0 8px;
+      }
+      img {
+        display: inline;
+        width: 60px;
+        height: fit-content;
+      }
+      &.yandex {
+        color: black;
+        background-color: #ffcc01;
+      }
+      &.google {
+        background-color: #33a852;
       }
     }
   }

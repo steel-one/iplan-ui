@@ -37,30 +37,26 @@
       <mat-icon mat-icon>login</mat-icon>
       Login
     </button>
-    <a href="/api/auth/yandex">
-      <button
-        mat-stroked-button
-        type="button"
-        class="yandex"
-        (click)="yandexLogin = 'Please wait... ⌛'"
-        style="height: 45px"
-      >
-        Login with
-        <img src="../../../../assets/yandex.png" />
-      </button>
-    </a>
-    <a href="/api/auth/google">
-      <button
-        mat-stroked-button
-        type="button"
-        class="google"
-        (click)="googleLogin = 'Please wait... ⌛'"
-        style="height: 45px"
-      >
-        Login with
-        <img src="../../../../assets/google.png" />
-      </button>
-    </a>
+    <button
+      mat-stroked-button
+      type="button"
+      class="yandex"
+      (click)="loginToYandex()"
+      style="height: 45px"
+    >
+      Login with
+      <img src="../../../../assets/yandex.png" />
+    </button>
+    <button
+      mat-stroked-button
+      type="button"
+      class="google"
+      (click)="loginToGoogle()"
+      style="height: 45px"
+    >
+      Login with
+      <img src="../../../../assets/google.png" />
+    </button>
     <button mat-flat-button type="button" routerLink="/signup">
       Sign up
     </button>

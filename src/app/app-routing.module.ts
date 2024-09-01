@@ -6,7 +6,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UsersComponent } from './users/users.component';
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
     path: 'app',
     canActivate: [AppGuard],
@@ -24,7 +23,7 @@ const ROUTES: Routes = [
     canActivate: [AdminGuard],
     component: UsersComponent,
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

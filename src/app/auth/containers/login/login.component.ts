@@ -19,8 +19,6 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  yandexLogin = 'Login with';
-  googleLogin = 'Login with';
 
   constructor(
     private authService: AuthService,
@@ -67,6 +65,18 @@ export class LoginComponent implements OnInit {
           user?.roles && this.authService.getInitialPathForRole(user.roles),
         ]),
       );
+  }
+
+  loginToYandex() {
+    this.authService.loginToYandex().subscribe((res) => {
+      console.log('>>>>>>>>>>loginToYandex', res);
+    });
+  }
+
+  loginToGoogle() {
+    this.authService.loginToGoogle().subscribe((res) => {
+      console.log('>>>>>>>>>>loginToGoogle', res);
+    });
   }
 
   private invalidOtp(loginRequest: ILoginRequest) {

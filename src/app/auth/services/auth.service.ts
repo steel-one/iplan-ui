@@ -46,6 +46,18 @@ export class AuthService {
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
+  loginToYandex(): Observable<User> {
+    return this.http
+      .get<any>(`${config['authUrl']}/yandex`)
+      .pipe(tap((data) => this.auth.doLoginUser(data)));
+  }
+
+  loginToGoogle(): Observable<User> {
+    return this.http
+      .get<any>(`${config['authUrl']}/google`)
+      .pipe(tap((data) => this.auth.doLoginUser(data)));
+  }
+
   logout() {
     return this.http.get<any>(`${config['authUrl']}/logout`).pipe(
       tap((data) => {
