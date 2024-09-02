@@ -14,16 +14,38 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Enter your password</mat-label>
     <input
       matInput
       type="password"
-      id="password"
+      id="signup_password"
       placeholder="Password"
-      autocomplete="off"
+      autocomplete="new-password"
       formControlName="password"
       required
+      [type]="hide() ? 'password' : 'text'"
     />
+    @if (loginForm.controls['password'].invalid) {
+      <mat-error>
+        <span *ngIf="loginForm.controls['password'].errors?.['required']">
+          Password is required.
+        </span>
+        <span *ngIf="loginForm.controls['password'].errors?.['minlength']">
+          Must be at least 8 characters.
+        </span>
+      </mat-error>
+    }
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hideShowPassword($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
   </mat-form-field>
+
   <div class="divider"></div>
   <div class="actions">
     <button

@@ -1,9 +1,13 @@
 <ng-container *ngIf="!isConfirmed; else confirmed">
-  <div class="header">We've sent you a confirmation link via email!</div>
-  <div>Please confirm your profile.</div>
+  <div class="content">
+    <div class="header">We've sent you a confirmation link via email!</div>
+    <div>Please confirm your profile.</div>
+  </div>
 </ng-container>
 
 <ng-template #confirmed>
-  <div class="header">Your profile is confirmed!</div>
-  <button mat-flat-button color="primary" routerLink="/login">Login</button>
+  <div class="content">
+    <div class="header">Your profile is confirmed!</div>
+    <button mat-flat-button color="primary" routerLink="/login">Login</button>
+  </div>
 </ng-template>

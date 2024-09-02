@@ -1,12 +1,16 @@
 :host {
-  margin-top: 30vh;
-  padding: 10vw;
-  display: block;
+  display: flex;
   width: 100%;
-  text-align: center;
+  height: 100%;
+  color: white;
 }
-
+.content {
+  max-width: 300px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .header {
   font-weight: bold;
-  padding: 10px;
 }

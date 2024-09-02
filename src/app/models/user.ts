@@ -6,6 +6,7 @@ export class User {
   first_name?: string;
   last_name?: string;
   password?: string;
+  repeat_password?: string;
   roles?: Role[];
   confirmed?: boolean;
 }

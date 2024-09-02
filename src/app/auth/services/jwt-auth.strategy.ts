@@ -11,7 +11,6 @@ export class JwtAuthStrategy implements AuthStrategy<Token> {
   }
 
   doLogoutUser(): void {
-    console.log('LOGOUT!');
     localStorage.removeItem(this.JWT_TOKEN);
   }
 

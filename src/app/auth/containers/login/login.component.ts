@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, retryWhen, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, retryWhen, switchMap, tap } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ILoginRequest } from '@models/loginRequest';
 import { SnackBarComponent } from 'src/common-ui/snackbar/snackbar.component';
 import { OtpComponent } from '../../components/otp-dialog/otp.component';
@@ -20,6 +20,13 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
+  hide = signal(true);
+
+  hideShowPassword(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
@@ -32,7 +39,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.email],
-      password: [''],
+      password: ['', Validators.minLength(8)],
     });
 
     const msg = this.route.snapshot.queryParams['msg'];
@@ -82,7 +89,7 @@ export class LoginComponent implements OnInit {
   private invalidOtp(loginRequest: ILoginRequest) {
     return (errors: Observable<HttpErrorResponse>) =>
       errors.pipe(
-        filter((err) => err.error.msg === 'OTP_REQUIRED'),
+        filter((err) => err?.error?.msg === 'OTP_REQUIRED'),
         switchMap(() => this.requestOtp()),
         tap((otp) => (loginRequest.otp = otp)),
       );

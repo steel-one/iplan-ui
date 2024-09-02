@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { ILoginRequest } from '@models/loginRequest';
+import { ISingUpRequest } from '@models/singUpRequest';
 import { Role } from '@models/types';
 import { User } from '@models/user';
 import { config } from './../../config';
@@ -29,15 +30,17 @@ export class AuthService {
     return roles.includes('ADMIN') ? this.ADMIN_PATH : this.INITIAL_PATH;
   }
 
-  signup(user: User): Observable<void> {
-    return this.http.post<any>(`${config['authUrl']}/sign_up`, user);
+  signup(user: ISingUpRequest): Observable<void> {
+    return this.http.post<any>(`${config['authUrl']}/sing_up`, user);
   }
 
   confirm(email: string, code: string): Observable<void> {
-    return this.http.post<any>(`${config['authUrl']}/confirm?`, {
-      email,
-      code,
-    });
+    return this.http
+      .post<any>(`${config['authUrl']}/confirm?`, {
+        email,
+        code,
+      })
+      .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   login(loginRequest: ILoginRequest): Observable<User> {
