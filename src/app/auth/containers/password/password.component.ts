@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Token } from '@models/token';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { PasswordService } from '../../services/password.service';
-import { Token } from '@models/token';
 
 @Component({
   selector: 'password',
@@ -12,7 +12,6 @@ import { Token } from '@models/token';
   styleUrls: ['./password.component.scss'],
 })
 export class PasswordComponent implements OnInit {
-  public isFinished: boolean = false;
   public email!: string;
   public passwordForm!: FormGroup;
   public recovery: boolean = false;
@@ -31,10 +30,10 @@ export class PasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private passwordService: PasswordService,
     private authService: AuthService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.isFinished = false;
     this.email = this.activeRoute.snapshot.queryParams['email'];
     this.code = this.activeRoute.snapshot.queryParams['code'];
     this.recovery = this.activeRoute.snapshot.queryParams['recovery'];
@@ -66,6 +65,8 @@ export class PasswordComponent implements OnInit {
     }
     task
       .pipe(tap((data) => this.authService.doLoginUser(data)))
-      .subscribe(() => (this.isFinished = true));
+      .subscribe(() => {
+        this.router.navigate([this.authService.LOGIN_PATH]);
+      });
   }
 }
