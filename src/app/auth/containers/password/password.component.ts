@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable, tap } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 import { PasswordService } from '../../services/password.service';
-import { Observable } from 'rxjs';
+import { Token } from '@models/token';
 
 @Component({
   selector: 'password',
@@ -17,10 +19,18 @@ export class PasswordComponent implements OnInit {
   public task!: string;
   private code!: string;
 
+  hide = signal(true);
+
+  hideShowPassword(event: MouseEvent) {
+    this.hide.set(!this.hide());
+    event.stopPropagation();
+  }
+
   constructor(
     private activeRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private passwordService: PasswordService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +41,7 @@ export class PasswordComponent implements OnInit {
     this.task = this.recovery ? 'Recover' : 'Set';
 
     this.passwordForm = this.formBuilder.group({
-      password: ['', Validators.required],
+      password: ['', Validators.minLength(8)],
     });
   }
 
@@ -40,7 +50,7 @@ export class PasswordComponent implements OnInit {
   }
 
   setPassword() {
-    let task: Observable<void>;
+    let task: Observable<Token>;
     if (this.recovery) {
       task = this.passwordService.recover(
         this.email,
@@ -54,6 +64,8 @@ export class PasswordComponent implements OnInit {
         this.f['password'].value,
       );
     }
-    task.subscribe(() => (this.isFinished = true));
+    task
+      .pipe(tap((data) => this.authService.doLoginUser(data)))
+      .subscribe(() => (this.isFinished = true));
   }
 }

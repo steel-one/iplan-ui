@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 import { PasswordService } from '../../services/password.service';
 
 @Component({
   selector: 'recover',
   templateUrl: './recover.component.html',
   styleUrls: ['./recover.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecoverComponent implements OnInit {
-  isRequestSent: boolean = false;
+  isRequestSent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public recoveryForm!: FormGroup;
 
   constructor(
@@ -17,7 +19,7 @@ export class RecoverComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isRequestSent = false;
+    this.isRequestSent$.next(false);
     this.recoveryForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -30,6 +32,6 @@ export class RecoverComponent implements OnInit {
   recover() {
     this.passwordService
       .requestRecovery(this.f['email'].value)
-      .subscribe(() => (this.isRequestSent = true));
+      .subscribe(this.isRequestSent$);
   }
 }

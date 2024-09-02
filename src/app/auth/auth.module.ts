@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
+import { TrimDirectiveModule } from 'projects/common/src/lib/component-tools';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthInterceptor } from './auth.interceptor';
 import { OtpComponent } from './components/otp-dialog/otp.component';
@@ -44,6 +45,7 @@ import { authStrategyProvider } from './services/auth.strategy';
     MatInputModule,
     MatDialogModule,
     MatIconModule,
+    TrimDirectiveModule,
   ],
   providers: [
     {

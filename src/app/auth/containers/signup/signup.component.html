@@ -56,7 +56,7 @@
     @if (signupForm.controls['email'].invalid) {
       <mat-error>
         <span *ngIf="signupForm.controls['email'].errors?.['required']">
-          Email name is required.
+          Email is required.
         </span>
         <span *ngIf="signupForm.controls['email'].errors?.['email']">
           Does not match email pattern
@@ -141,8 +141,8 @@
 
   <div class="actions">
     <button
-      mat-stroked-button
-      color="primary"
+      mat-flat-button
+      color="accent"
       type="submit"
       (click)="signup()"
       [disabled]="!signupForm.valid"

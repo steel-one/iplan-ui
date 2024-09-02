@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { ILoginRequest } from '@models/loginRequest';
 import { ISingUpRequest } from '@models/singUpRequest';
+import { Token } from '@models/token';
 import { Role } from '@models/types';
 import { User } from '@models/user';
 import { config } from './../../config';
@@ -95,6 +96,10 @@ export class AuthService {
   doLogoutAndRedirectToLogin() {
     this.doLogoutUser();
     this.router.navigate(['/login']);
+  }
+
+  public doLoginUser(data: Token) {
+    this.auth.doLoginUser(data);
   }
 
   private doLogoutUser() {
