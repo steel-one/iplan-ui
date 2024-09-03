@@ -2,7 +2,9 @@ import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LoaderModule } from 'src/common-ui/loader';
 import { AppConfigService } from './app-config.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
@@ -11,7 +13,6 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { HttpErrorHandler } from './error.handler';
 import { httpErrorInterceptor } from './error.interceptor';
-import { LoaderModule } from './loader/loader.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { UsersModule } from './users/users.module';
 
@@ -19,11 +20,12 @@ import { UsersModule } from './users/users.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    LoaderModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerImmediately',
     }),
+    LoaderModule,
     SidebarModule,
     AuthModule,
     AppRoutingModule,

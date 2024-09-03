@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -15,6 +16,8 @@ import { AuthService } from '../../services/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignupComponent implements OnInit {
+  loading$ = new BehaviorSubject(false);
+
   signupForm!: FormGroup;
 
   hide = signal(true);
@@ -53,6 +56,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    this.loading$.next(true);
     this.authService
       .signup({
         first_name: this.f['first_name'].value,

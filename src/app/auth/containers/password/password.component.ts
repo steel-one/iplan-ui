@@ -2,7 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Token } from '@models/token';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { PasswordService } from '../../services/password.service';
 
@@ -12,6 +12,8 @@ import { PasswordService } from '../../services/password.service';
   styleUrls: ['./password.component.scss'],
 })
 export class PasswordComponent implements OnInit {
+  loading$ = new BehaviorSubject(false);
+
   public email!: string;
   public passwordForm!: FormGroup;
   public recovery: boolean = false;
@@ -49,6 +51,7 @@ export class PasswordComponent implements OnInit {
   }
 
   setPassword() {
+    this.loading$.next(true);
     let task: Observable<Token>;
     if (this.recovery) {
       task = this.passwordService.recover(

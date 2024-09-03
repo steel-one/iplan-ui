@@ -10,6 +10,8 @@ import { PasswordService } from '../../services/password.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecoverComponent implements OnInit {
+  loading$ = new BehaviorSubject(false);
+
   isRequestSent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public recoveryForm!: FormGroup;
 
@@ -30,8 +32,12 @@ export class RecoverComponent implements OnInit {
   }
 
   recover() {
+    this.loading$.next(true);
     this.passwordService
       .requestRecovery(this.f['email'].value)
-      .subscribe(this.isRequestSent$);
+      .subscribe(() => {
+        this.loading$.next(false);
+        this.isRequestSent$.next(true);
+      });
   }
 }
