@@ -2,13 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '@models/user';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { config } from '../../config';
 import { AuthStrategy } from './auth.strategy';
 
 export class SessionAuthStrategy implements AuthStrategy<User> {
   private loggedUser: User | undefined = new User();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authUrl: string,
+  ) {}
 
   doLoginUser(user: User): void {
     this.loggedUser = user;
@@ -23,7 +25,7 @@ export class SessionAuthStrategy implements AuthStrategy<User> {
       return of(this.loggedUser);
     } else {
       return this.http
-        .get<User>(`${config['authUrl']}/user`)
+        .get<User>(`${this.authUrl}/user`)
         .pipe(tap((user) => (this.loggedUser = user)));
     }
   }

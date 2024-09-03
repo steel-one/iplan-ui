@@ -1,4 +1,5 @@
 {
-  "AUTH_DOMAIN": "http://localhost:3000",
+  "AUTH_URL": "http://localhost:3000/api/auth",
+  "AUTH_TYPE": "token",
   "BFF_GRAPHQL_URL": "http://localhost:4001/graphql"
 }

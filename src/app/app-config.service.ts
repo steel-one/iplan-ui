@@ -1,10 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { ReplaySubject, first, map, startWith } from 'rxjs';
 
-interface Config {}
+interface Config {
+  AUTH_URL: string;
+  AUTH_TYPE: string;
+  BFF_GRAPHQL_URL: string;
+}
 
-const REGISTERED_KEYS: (keyof Config)[] = [];
+const REGISTERED_KEYS: (keyof Config)[] = [
+  'AUTH_URL',
+  'AUTH_TYPE',
+  'BFF_GRAPHQL_URL',
+];
+
+export const AUTH_URL = new InjectionToken<string>('AUTH_URL');
+export const AUTH_TYPE = new InjectionToken<string>('AUTH_TYPE');
+export const BFF_GRAPHQL_URL = new InjectionToken<string>('BFF_GRAPHQL_URL');
 
 @Injectable()
 export class AppConfigService {
@@ -15,6 +27,10 @@ export class AppConfigService {
   constructor(private http: HttpClient) {
     this._config$.subscribe((c) => (this._config = c));
 
+    this.loadConfig();
+  }
+
+  loadConfig(): void {
     this.http
       .get<Config>(this._fileName, { params: { 'cache-bust': Math.random() } })
       .pipe(map((c) => this._validateConfig(c)))
@@ -25,7 +41,7 @@ export class AppConfigService {
     return this._config$.pipe(
       map((config) => !config),
       first(),
-      startWith(true)
+      startWith(true),
     );
   }
 
@@ -37,7 +53,7 @@ export class AppConfigService {
   }
 
   _getFileName() {
-    const domain = window.location.hostname.match(/(-staging|-dev)?.com/);
+    const domain = window.location.hostname.match(/(staging|dev)?.com/);
     if (!domain) {
       return 'config.local.json';
     }

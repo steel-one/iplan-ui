@@ -9,8 +9,8 @@ import { ISingUpRequest } from '@models/singUpRequest';
 import { Token } from '@models/token';
 import { Role } from '@models/types';
 import { User } from '@models/user';
-import { config } from './../../config';
 import { AUTH_STRATEGY, AuthStrategy } from './auth.strategy';
+import { AUTH_TYPE } from 'src/app/app-config.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +24,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private http: HttpClient,
+    @Inject(AUTH_TYPE) private authUrl: string,
     @Inject(AUTH_STRATEGY) private auth: AuthStrategy<any>,
   ) {}
 
@@ -32,12 +33,12 @@ export class AuthService {
   }
 
   signup(user: ISingUpRequest): Observable<void> {
-    return this.http.post<any>(`${config['authUrl']}/sing_up`, user);
+    return this.http.post<any>(`${this.authUrl}/sing_up`, user);
   }
 
   confirm(email: string, code: string): Observable<void> {
     return this.http
-      .post<any>(`${config['authUrl']}/confirm?`, {
+      .post<any>(`${this.authUrl}/confirm?`, {
         email,
         code,
       })
@@ -46,24 +47,24 @@ export class AuthService {
 
   login(loginRequest: ILoginRequest): Observable<User> {
     return this.http
-      .post<any>(`${config['authUrl']}/login`, loginRequest)
+      .post<any>(`${this.authUrl}/login`, loginRequest)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   loginToYandex(): Observable<User> {
     return this.http
-      .get<any>(`${config['authUrl']}/yandex`)
+      .get<any>(`${this.authUrl}/yandex`)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   loginToGoogle(): Observable<User> {
     return this.http
-      .get<any>(`${config['authUrl']}/google`)
+      .get<any>(`${this.authUrl}/google`)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   logout() {
-    return this.http.get<any>(`${config['authUrl']}/logout`).pipe(
+    return this.http.get<any>(`${this.authUrl}/logout`).pipe(
       tap((data) => {
         this.doLogoutAndRedirectToLogin();
       }),

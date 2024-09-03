@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { config } from './config';
+import { AUTH_URL } from './app-config.service';
 import { HttpErrorHandler } from './error.handler';
 
 export const httpErrorInterceptor: HttpInterceptorFn = (
@@ -13,10 +13,11 @@ export const httpErrorInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn,
 ) => {
   const handler = inject(HttpErrorHandler);
+  const authUrl = inject(AUTH_URL);
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (!isErrorMessageSuppressed(error)) {
+      if (!isErrorMessageSuppressed(error, authUrl)) {
         handler.handleError(error);
       }
       return throwError(() => error);
@@ -24,20 +25,26 @@ export const httpErrorInterceptor: HttpInterceptorFn = (
   );
 };
 
-function isErrorMessageSuppressed(error: HttpErrorResponse): boolean {
+function isErrorMessageSuppressed(
+  error: HttpErrorResponse,
+  authUrl: string,
+): boolean {
   return (
-    isQueryForLoggedUser(error) ||
+    isQueryForLoggedUser(error, authUrl) ||
     isOtpRequired(error) ||
-    isLogoutRequest(error)
+    isLogoutRequest(error, authUrl)
   );
 }
 
-function isLogoutRequest(error: HttpErrorResponse): boolean {
-  return !!error.url?.endsWith(`${config['authUrl']}/logout`);
+function isLogoutRequest(error: HttpErrorResponse, authUrl: string): boolean {
+  return !!error.url?.endsWith(`${authUrl}/logout`);
 }
 
-function isQueryForLoggedUser(error: HttpErrorResponse): boolean {
-  return !!error.url?.endsWith(`${config['authUrl']}/user`);
+function isQueryForLoggedUser(
+  error: HttpErrorResponse,
+  authUrl: string,
+): boolean {
+  return !!error.url?.endsWith(`${authUrl}/user`);
 }
 
 function isOtpRequired(error: HttpErrorResponse): boolean {

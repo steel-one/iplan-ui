@@ -8,7 +8,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { config } from './../config';
+import { AUTH_TYPE } from '../app-config.service';
 import { AuthService } from './services/auth.service';
 import { AUTH_STRATEGY } from './services/auth.strategy';
 import { JwtAuthStrategy } from './services/jwt-auth.strategy';
@@ -18,13 +18,14 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     @Inject(AUTH_STRATEGY) private jwt: JwtAuthStrategy,
+    @Inject(AUTH_TYPE) private authUrl: string,
   ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    if (config.auth === 'token' && this.jwt && this.jwt.getToken()) {
+    if (this.authUrl === 'token' && this.jwt && this.jwt.getToken()) {
       // @ts-ignore
       request = this.addToken(request, this.jwt.getToken());
     }
