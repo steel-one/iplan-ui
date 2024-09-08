@@ -28,7 +28,9 @@
 
   &.wrapped-list {
     padding: 0;
-    box-shadow: 0 1px 0 $light-dividers, 0 -1px 0 $light-dividers;
+    box-shadow:
+      0 1px 0 $light-dividers,
+      0 -1px 0 $light-dividers;
   }
 
   &.top-divider {
@@ -103,8 +105,9 @@
 #open {
   .logo {
     padding: 0 16px;
+    height: 90px;
     img {
-      height: 23px;
+      height: 100%;
     }
   }
   .mat-mdc-list-item .item-content span {

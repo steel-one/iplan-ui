@@ -1,0 +1,15 @@
+<ng-container *ngIf="loading$ | async; then loaderTmpl; else formTmpl">
+</ng-container>
+
+<ng-template #loaderTmpl>
+  <loader></loader>
+</ng-template>
+
+<ng-template #formTmpl>
+  <ng-container *ngIf="!isConfirmed">
+    <div class="content">
+      <div class="header">We've sent you a confirmation link via email!</div>
+      <div>Please confirm your profile.</div>
+    </div>
+  </ng-container>
+</ng-template>

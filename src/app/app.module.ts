@@ -1,30 +1,41 @@
 import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LoaderModule } from 'src/common-ui/loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
-import { LoaderModule } from './loader/loader.module';
+import { AuthModule } from './auth/auth.module';
+import { HttpErrorHandler } from './error.handler';
+import { httpErrorInterceptor } from './error.interceptor';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { HttpClientModule } from '@angular/common/http';
-import { AppConfigService } from './app-config.service';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    LoaderModule,
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerImmediately',
     }),
+    LoaderModule,
     SidebarModule,
-    HttpClientModule,
+    AuthModule,
+    AppRoutingModule,
+    UsersModule,
   ],
-  providers: [AppService, AppUpdaterService, AppConfigService],
+  providers: [
+    AppService,
+    AppUpdaterService,
+    HttpErrorHandler,
+    provideHttpClient(withInterceptors([httpErrorInterceptor])),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

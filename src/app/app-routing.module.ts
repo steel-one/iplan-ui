@@ -1,28 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { hasAccess, initAuth, logOutFn } from './auth';
+import { AdminGuard } from './auth/guards/admin.guard';
+import { AppGuard } from './auth/guards/app.guard';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UsersComponent } from './users/users.component';
 
 const ROUTES: Routes = [
   {
-    path: '',
-    // canActivate: [initAuth],
+    path: 'app',
+    canActivate: [AppGuard],
+    component: SidebarComponent,
     children: [
-      {
-        path: 'auth/logout',
-        // canActivate: [logOutFn],
-        children: [],
-      },
-      {
-        path: '',
-        // canActivate: [hasAccess],
-        data: { requiredScopes: ['access:admin'] },
-        component: SidebarComponent,
-        children: [],
-      },
+      // {
+      //   path: 'planing',
+      //   loadChildren: () =>
+      //     import('./planing/planing.module').then((m) => m.PlaningModule),
+      // },
     ],
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    component: UsersComponent,
+  },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

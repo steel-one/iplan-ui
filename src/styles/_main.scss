@@ -12,6 +12,14 @@ body {
   margin: 0;
   height: 100%;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background-color: seagreen;
   color: white;
+  background-image: url('../assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mdc-button__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,12 @@
+import { Role } from './types';
+
+export class User {
+  id?: string;
+  email?: string;
+  first_name?: string;
+  last_name?: string;
+  password?: string;
+  repeat_password?: string;
+  roles?: Role[];
+  confirmed?: boolean;
+}

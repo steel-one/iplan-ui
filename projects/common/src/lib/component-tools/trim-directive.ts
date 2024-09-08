@@ -1,15 +1,23 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: 'input[type="text"]:not([no-trim]), input:not([type])',
+  selector: 'input:not([no-trim])',
 })
 export class TrimDirective {
-  constructor(private ngControl: NgControl) {}
+  constructor(
+    private ngControl: NgControl,
+    private el: ElementRef,
+  ) {}
 
-  @HostListener('blur', ['$event.target.value'])
-  onBlur(currentValue: string) {
-    const value = currentValue.trim();
-    this.ngControl.control?.patchValue(value);
+  @HostListener('blur', ['$event.target'])
+  onBlur(input: HTMLInputElement) {
+    const types = ['password', 'text', 'email'];
+    if (types.includes(input.type)) {
+      const trimmedValue = input.value.trim();
+      if (trimmedValue !== input.value) {
+        this.ngControl.control?.setValue(trimmedValue);
+      }
+    }
   }
 }

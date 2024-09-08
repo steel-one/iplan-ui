@@ -1,0 +1,167 @@
+<ng-container *ngIf="loading$ | async; then loaderTmpl; else formTmpl">
+</ng-container>
+
+<ng-template #loaderTmpl>
+  <loader></loader>
+</ng-template>
+
+<ng-template #formTmpl>
+  <form [formGroup]="signupForm">
+    <div class="header">Create your account</div>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        id="first_name"
+        placeholder="First Name"
+        autocomplete="given-name"
+        formControlName="first_name"
+        required
+      />
+      @if (signupForm.controls['first_name'].invalid) {
+        <mat-error>
+          <span *ngIf="signupForm.controls['first_name'].errors?.['required']">
+            First name is required.
+          </span>
+          <span *ngIf="signupForm.controls['first_name'].errors?.['minlength']">
+            First name must be at least 6 characters long.
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        id="last_name"
+        placeholder="Last Name"
+        autocomplete="family-name"
+        formControlName="last_name"
+        required
+      />
+      @if (signupForm.controls['last_name'].invalid) {
+        <mat-error>
+          <span *ngIf="signupForm.controls['last_name'].errors?.['required']">
+            Last name is required.
+          </span>
+          <span *ngIf="signupForm.controls['last_name'].errors?.['minlength']">
+            Last name must be at least 6 characters long.
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        id="signup_email"
+        placeholder="Email"
+        autocomplete="email"
+        formControlName="email"
+        required
+      />
+      @if (signupForm.controls['email'].invalid) {
+        <mat-error>
+          <span *ngIf="signupForm.controls['email'].errors?.['required']">
+            Email is required.
+          </span>
+          <span *ngIf="signupForm.controls['email'].errors?.['email']">
+            Does not match email pattern
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        type="password"
+        id="signup_password"
+        placeholder="Password"
+        autocomplete="new-password"
+        formControlName="password"
+        required
+        [type]="hide() ? 'password' : 'text'"
+      />
+      @if (signupForm.controls['password'].invalid) {
+        <mat-error>
+          <span *ngIf="signupForm.controls['password'].errors?.['required']">
+            Password is required.
+          </span>
+          <span *ngIf="signupForm.controls['password'].errors?.['minlength']">
+            Must be at least 8 characters.
+          </span>
+        </mat-error>
+      }
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideShowPassword($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Repeat your password</mat-label>
+      <input
+        matInput
+        type="password"
+        id="signup_repeat_password"
+        placeholder="Password"
+        autocomplete="new-password"
+        formControlName="repeat_password"
+        required
+        [type]="hideRepeat() ? 'password' : 'text'"
+      />
+      @if (signupForm.controls['repeat_password'].invalid) {
+        <mat-error>
+          <span
+            *ngIf="signupForm.controls['repeat_password'].errors?.['required']"
+          >
+            Repeat password is required.
+          </span>
+          <span
+            *ngIf="signupForm.controls['repeat_password'].errors?.['minlength']"
+          >
+            Must be at least 8 characters.
+          </span>
+        </mat-error>
+      }
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideShowRepeatPassword($event)"
+        [attr.aria-label]="'Hide repeat_password'"
+        [attr.aria-pressed]="hideRepeat()"
+      >
+        <mat-icon>{{
+          hideRepeat() ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <ng-container *ngIf="errorMessage() as message">
+      <mat-error style="text-align: center">{{ message }}</mat-error>
+    </ng-container>
+
+    <div class="actions">
+      <button
+        mat-flat-button
+        color="accent"
+        type="submit"
+        (click)="signup()"
+        [disabled]="!signupForm.valid"
+      >
+        Sign up
+      </button>
+      <button mat-stroked-button routerLink="/login">Login</button>
+    </div>
+  </form>
+</ng-template>

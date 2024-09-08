@@ -10,9 +10,9 @@
 button {
   font-size: 12px;
   font-weight: 400;
+  display: flex;
   .mat-icon {
     $icon-size: 20px;
-    line-height: $icon-size;
     font-size: $icon-size;
     height: $icon-size;
     width: $icon-size;

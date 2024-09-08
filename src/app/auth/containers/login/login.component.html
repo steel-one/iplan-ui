@@ -1,0 +1,97 @@
+<ng-container *ngIf="loading$ | async; then loaderTmpl; else formTmpl">
+</ng-container>
+
+<ng-template #loaderTmpl>
+  <loader></loader>
+</ng-template>
+
+<ng-template #formTmpl>
+  <form [formGroup]="loginForm">
+    <div class="header">Login to your account</div>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        id="email"
+        placeholder="Email"
+        formControlName="email"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        type="password"
+        id="signup_password"
+        placeholder="Password"
+        autocomplete="new-password"
+        formControlName="password"
+        required
+        [type]="hide() ? 'password' : 'text'"
+      />
+      @if (loginForm.controls['password'].invalid) {
+        <mat-error>
+          <span *ngIf="loginForm.controls['password'].errors?.['required']">
+            Password is required.
+          </span>
+          <span *ngIf="loginForm.controls['password'].errors?.['minlength']">
+            Must be at least 8 characters.
+          </span>
+        </mat-error>
+      }
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideShowPassword($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="divider"></div>
+    <div class="actions">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="login()"
+        [disabled]="!loginForm.valid"
+        style="height: 45px"
+      >
+        <mat-icon mat-icon>login</mat-icon>
+        Login
+      </button>
+      <button
+        mat-stroked-button
+        type="button"
+        class="yandex"
+        (click)="loginToYandex()"
+        style="height: 45px"
+      >
+        Login with
+        <img src="../../../../assets/yandex.png" />
+      </button>
+      <button
+        mat-stroked-button
+        type="button"
+        class="google"
+        (click)="loginToGoogle()"
+        style="height: 45px"
+      >
+        Login with
+        <img src="../../../../assets/google.png" />
+      </button>
+      <button mat-flat-button type="button" routerLink="/signup">
+        Sign up
+      </button>
+      <button mat-flat-button type="button" routerLink="/recover">
+        Recover password
+      </button>
+    </div>
+  </form>
+</ng-template>

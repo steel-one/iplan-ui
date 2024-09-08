@@ -43,17 +43,6 @@ $primary-palette: mat.m2-define-palette(mat.$m2-blue-grey-palette, 900);
 $accent-palette: mat.m2-define-palette(mat.$m2-green-palette, 900);
 $warn-palette: mat.m2-define-palette(mat.$m2-red-palette, 400);
 
-$light-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $primary-palette,
-      accent: $accent-palette,
-    ),
-    typography: mat.m2-define-typography-config(),
-    density: 0,
-  )
-);
-
 $primary: mat.m2-get-color-from-palette($primary-palette);
 $accent: mat.m2-get-color-from-palette($accent-palette);
 
@@ -72,14 +61,3 @@ $light-secondary-text: rgba(white, 0.7);
 $light-disabled-text: rgba(white, 0.5);
 $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
-
-$dark-blue-theme: mat.m2-define-light-theme(
-  (
-    color: (
-      primary: $accent-palette,
-      accent: $accent-palette,
-    ),
-    typography: mat.m2-define-typography-config(),
-    density: 0,
-  )
-);
