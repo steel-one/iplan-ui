@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    if (config.auth === 'token' && this.jwt && this.jwt.getToken()) {
+    if (config.AUTH_TYPE === 'token' && this.jwt && this.jwt.getToken()) {
       // @ts-ignore
       request = this.addToken(request, this.jwt.getToken());
     }

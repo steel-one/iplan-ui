@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, retryWhen, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, retryWhen, switchMap, tap } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -66,8 +66,12 @@ export class LoginComponent implements OnInit {
     this.authService
       .login(loginRequest)
       .pipe(
-        retryWhen(this.invalidOtp(loginRequest)),
         switchMap(() => this.authService.getCurrentUser$()),
+        catchError((err) => {
+          this.loading$.next(false);
+          throw new HttpErrorResponse(err);
+        }),
+        retryWhen(this.invalidOtp(loginRequest)),
       )
       .subscribe((user) => {
         this.router.navigate([
@@ -77,7 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginToYandex() {
-    this.authService.loginToYandex().subscribe((res) => {
+    this.authService.loginToYandex().subscribe((res: any) => {
       this.loading$.next(true);
       console.log('>>>>>>>>>>loginToYandex', res);
     });

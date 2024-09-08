@@ -22,7 +22,7 @@ export const authStrategyProvider = {
   provide: AUTH_STRATEGY,
   deps: [HttpClient],
   useFactory: (http: HttpClient) => {
-    switch (config.auth) {
+    switch (config.AUTH_TYPE) {
       case 'session':
         return new SessionAuthStrategy(http);
       case 'token':

@@ -32,12 +32,12 @@ export class AuthService {
   }
 
   signup(user: ISingUpRequest): Observable<void> {
-    return this.http.post<any>(`${config['authUrl']}/sing_up`, user);
+    return this.http.post<any>(`${config['AUTH_URL']}/sing_up`, user);
   }
 
   confirm(email: string, code: string): Observable<void> {
     return this.http
-      .post<any>(`${config['authUrl']}/confirm?`, {
+      .post<any>(`${config['AUTH_URL']}/confirm?`, {
         email,
         code,
       })
@@ -46,24 +46,24 @@ export class AuthService {
 
   login(loginRequest: ILoginRequest): Observable<User> {
     return this.http
-      .post<any>(`${config['authUrl']}/login`, loginRequest)
+      .post<any>(`${config['AUTH_URL']}/login`, loginRequest)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   loginToYandex(): Observable<User> {
     return this.http
-      .get<any>(`${config['authUrl']}/yandex`)
+      .get<any>(`${config['AUTH_URL']}/yandex`)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   loginToGoogle(): Observable<User> {
     return this.http
-      .get<any>(`${config['authUrl']}/google`)
+      .get<any>(`${config['AUTH_URL']}/google`)
       .pipe(tap((data) => this.auth.doLoginUser(data)));
   }
 
   logout() {
-    return this.http.get<any>(`${config['authUrl']}/logout`).pipe(
+    return this.http.get<any>(`${config['AUTH_URL']}/logout`).pipe(
       tap((data) => {
         this.doLogoutAndRedirectToLogin();
       }),

@@ -5,7 +5,6 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoaderModule } from 'src/common-ui/loader';
-import { AppConfigService } from './app-config.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
 import { AppComponent } from './app.component';
@@ -34,7 +33,6 @@ import { UsersModule } from './users/users.module';
   providers: [
     AppService,
     AppUpdaterService,
-    AppConfigService,
     HttpErrorHandler,
     provideHttpClient(withInterceptors([httpErrorInterceptor])),
   ],

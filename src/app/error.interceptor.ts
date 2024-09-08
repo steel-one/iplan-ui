@@ -33,11 +33,11 @@ function isErrorMessageSuppressed(error: HttpErrorResponse): boolean {
 }
 
 function isLogoutRequest(error: HttpErrorResponse): boolean {
-  return !!error.url?.endsWith(`${config['authUrl']}/logout`);
+  return !!error.url?.endsWith(`${config['AUTH_URL']}/logout`);
 }
 
 function isQueryForLoggedUser(error: HttpErrorResponse): boolean {
-  return !!error.url?.endsWith(`${config['authUrl']}/user`);
+  return !!error.url?.endsWith(`${config['AUTH_URL']}/user`);
 }
 
 function isOtpRequired(error: HttpErrorResponse): boolean {

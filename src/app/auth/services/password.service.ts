@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { config } from './../../config';
 import { Token } from '@models/token';
+import { config } from './../../config';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class PasswordService {
 
   setup(email: string, code: string, password: string): Observable<Token> {
     // never send password over HTTP GET!
-    return this.http.post<any>(`${config['authUrl']}/setup`, {
+    return this.http.post<any>(`${config['AUTH_URL']}/setup`, {
       email,
       code,
       password,
@@ -21,14 +21,14 @@ export class PasswordService {
   }
 
   requestRecovery(email: string) {
-    return this.http.post<any>(`${config['authUrl']}/request-recovery`, {
+    return this.http.post<any>(`${config['AUTH_URL']}/request-recovery`, {
       email,
     });
   }
 
   recover(email: string, code: string, password: string): Observable<Token> {
     // never send password over HTTP GET!
-    return this.http.post<any>(`${config['authUrl']}/recover`, {
+    return this.http.post<any>(`${config['AUTH_URL']}/recover`, {
       email,
       code,
       password,
