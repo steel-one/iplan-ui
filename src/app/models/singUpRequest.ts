@@ -1,8 +1,8 @@
 export interface ISingUpRequest {
   email: string;
-  first_name: string;
-  last_name: string;
+  firstName: string;
+  lastName: string;
   password: string;
-  repeat_password: string;
+  repeatPassword: string;
   confirmed?: boolean;
 }

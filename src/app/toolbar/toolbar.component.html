@@ -7,7 +7,7 @@
           *ngIf="user.name; then nameTmpl; else emailTmpl"
         ></ng-container>
         <ng-template #nameTmpl>
-          <span [matTooltip]="user.email" matTooltipPosition="below">{{
+          <span [matTooltip]="user.name" matTooltipPosition="below">{{
             user.name
           }}</span>
         </ng-template>
@@ -22,6 +22,10 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu" xPosition="before">
+  <button mat-menu-item (click)="srv.updateMe()">
+    <mat-icon>person</mat-icon>
+    <span>Edit</span>
+  </button>
   <button mat-menu-item (click)="srv.logout()">
     <mat-icon>power_settings_new</mat-icon>
     <span>Log Out</span>

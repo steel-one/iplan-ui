@@ -13,18 +13,18 @@
       <input
         matInput
         type="text"
-        id="first_name"
+        id="firstName"
         placeholder="First Name"
         autocomplete="given-name"
-        formControlName="first_name"
+        formControlName="firstName"
         required
       />
-      @if (signupForm.controls['first_name'].invalid) {
+      @if (signupForm.controls['firstName'].invalid) {
         <mat-error>
-          <span *ngIf="signupForm.controls['first_name'].errors?.['required']">
+          <span *ngIf="signupForm.controls['firstName'].errors?.['required']">
             First name is required.
           </span>
-          <span *ngIf="signupForm.controls['first_name'].errors?.['minlength']">
+          <span *ngIf="signupForm.controls['firstName'].errors?.['minlength']">
             First name must be at least 6 characters long.
           </span>
         </mat-error>
@@ -35,18 +35,18 @@
       <input
         matInput
         type="text"
-        id="last_name"
+        id="lastName"
         placeholder="Last Name"
         autocomplete="family-name"
-        formControlName="last_name"
+        formControlName="lastName"
         required
       />
-      @if (signupForm.controls['last_name'].invalid) {
+      @if (signupForm.controls['lastName'].invalid) {
         <mat-error>
-          <span *ngIf="signupForm.controls['last_name'].errors?.['required']">
+          <span *ngIf="signupForm.controls['lastName'].errors?.['required']">
             Last name is required.
           </span>
-          <span *ngIf="signupForm.controls['last_name'].errors?.['minlength']">
+          <span *ngIf="signupForm.controls['lastName'].errors?.['minlength']">
             Last name must be at least 6 characters long.
           </span>
         </mat-error>
@@ -113,22 +113,22 @@
       <input
         matInput
         type="password"
-        id="signup_repeat_password"
+        id="signup_repeatPassword"
         placeholder="Password"
         autocomplete="new-password"
-        formControlName="repeat_password"
+        formControlName="repeatPassword"
         required
         [type]="hideRepeat() ? 'password' : 'text'"
       />
-      @if (signupForm.controls['repeat_password'].invalid) {
+      @if (signupForm.controls['repeatPassword'].invalid) {
         <mat-error>
           <span
-            *ngIf="signupForm.controls['repeat_password'].errors?.['required']"
+            *ngIf="signupForm.controls['repeatPassword'].errors?.['required']"
           >
             Repeat password is required.
           </span>
           <span
-            *ngIf="signupForm.controls['repeat_password'].errors?.['minlength']"
+            *ngIf="signupForm.controls['repeatPassword'].errors?.['minlength']"
           >
             Must be at least 8 characters.
           </span>
@@ -138,7 +138,7 @@
         mat-icon-button
         matSuffix
         (click)="hideShowRepeatPassword($event)"
-        [attr.aria-label]="'Hide repeat_password'"
+        [attr.aria-label]="'Hide repeatPassword'"
         [attr.aria-pressed]="hideRepeat()"
       >
         <mat-icon>{{

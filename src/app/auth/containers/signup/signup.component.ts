@@ -43,11 +43,11 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-      first_name: ['', Validators.minLength(3)],
-      last_name: ['', Validators.minLength(1)],
+      firstName: ['', Validators.minLength(3)],
+      lastName: ['', Validators.minLength(1)],
       email: ['', Validators.email],
       password: ['', Validators.minLength(8)],
-      repeat_password: ['', Validators.minLength(8)],
+      repeatPassword: ['', Validators.minLength(8)],
     });
   }
 
@@ -59,11 +59,11 @@ export class SignupComponent implements OnInit {
     this.loading$.next(true);
     this.authService
       .signup({
-        first_name: this.f['first_name'].value,
-        last_name: this.f['last_name'].value,
+        firstName: this.f['firstName'].value,
+        lastName: this.f['lastName'].value,
         email: this.f['email'].value,
         password: this.f['password'].value,
-        repeat_password: this.f['repeat_password'].value,
+        repeatPassword: this.f['repeatPassword'].value,
       })
       .subscribe({
         next: () => this.router.navigate([this.authService.CONFIRM_PATH]),

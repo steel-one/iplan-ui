@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   signup(user: ISingUpRequest): Observable<void> {
-    return this.http.post<any>(`${config['AUTH_URL']}/sing_up`, user);
+    return this.http.post<any>(`${config['AUTH_URL']}/sing-up`, user);
   }
 
   confirm(email: string, code: string): Observable<void> {

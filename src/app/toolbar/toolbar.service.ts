@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from '@models/user';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../auth/services/auth.service';
+import { DialogComponent } from '../users/dialog';
 
 @Injectable()
 export class ToolbarService {
@@ -12,17 +14,28 @@ export class ToolbarService {
     map((u) => (u?.roles?.includes('ADMIN') ? '(ADMIN)' : '')),
   );
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog,
+  ) {}
 
   logout() {
     this.authService.logout().subscribe();
+  }
+
+  updateMe() {
+    const config = {
+      width: '400px',
+      disableClose: true,
+    };
+    return this.dialog.open(DialogComponent, config).afterClosed();
   }
 }
 
 export function _userManipulation(user: User | undefined) {
   if (user) {
-    if (user.first_name) {
-      const name = [user.first_name, user.last_name]
+    if (user.firstName) {
+      const name = [user.firstName, user.lastName]
         .filter((item) => !!item)
         .join(' ');
       return { name, roles: user.roles };
