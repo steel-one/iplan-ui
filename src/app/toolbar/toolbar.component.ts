@@ -14,7 +14,7 @@ export class ToolbarComponent {
     return this.srv.user$;
   }
 
-  get admin$() {
-    return this.srv.admin$;
+  get isAdmin$() {
+    return this.srv.isAdmin$;
   }
 }

@@ -1,0 +1,120 @@
+<div
+  class="table-wrapper"
+  [ngStyle]="{ display: dataSource.data.length ? 'block' : 'none' }"
+>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    [trackBy]="trackByFn"
+    matSort
+    matSortDisableClear
+    [matSortActive]="sortActive"
+    [matSortDirection]="sortDirection"
+    (matSortChange)="sort.emit($event)"
+  >
+    <ng-container [matColumnDef]="columnSet[0]">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef>
+        <span>Email</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.email }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columnSet[1]">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>First Name</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.firstName }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columnSet[2]">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Last Name</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.lastName }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columnSet[3]">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Blocked</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.isBlocked }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columnSet[4]">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Confirmed</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.isConfirmed }}</span>
+      </td>
+    </ng-container>
+
+    <ng-container [matColumnDef]="columnSet[5]">
+      <th mat-header-cell *matHeaderCellDef>
+        <span>Roles</span>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <span>{{ row.roles.join(', ') }}</span>
+      </td>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container [matColumnDef]="columnSet[6]" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" class="fixIE11verticallyCentered">
+        <ul>
+          <li>
+            <button
+              mat-icon-button
+              disableRipple
+              [matMenuTriggerFor]="menu"
+              data-cy="more-btn"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <div data-cy="actions">
+                <button mat-menu-item (click)="this.update.emit(row)">
+                  <span>Edit User</span>
+                </button>
+                <button mat-menu-item (click)="this.block.emit(row)">
+                  <span>Block User</span>
+                </button>
+              </div>
+            </mat-menu>
+            <a mat-icon-button disableRipple>
+              <mat-icon>chevron_right</mat-icon>
+            </a>
+          </li>
+        </ul>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnSet"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnSet"></tr>
+  </table>
+</div>
+
+<mat-paginator
+  [length]="collectionLength"
+  [pageSize]="paginatorPageSize"
+  [pageIndex]="paginatorPageIndex"
+  [pageSizeOptions]="[5, 25, 100]"
+  showFirstLastButtons
+  (page)="page.emit($event)"
+  [ngStyle]="{ display: dataSource.data.length ? 'block' : 'none' }"
+></mat-paginator>
+
+<ng-container *ngIf="!dataSource.data?.length">
+  <div class="empty">
+    <span class="mat-subtitle-2">There are no records here yet.</span>
+  </div>
+</ng-container>

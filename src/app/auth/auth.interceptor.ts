@@ -13,7 +13,7 @@ import { AuthService } from './services/auth.service';
 import { AUTH_STRATEGY } from './services/auth.strategy';
 import { JwtAuthStrategy } from './services/jwt-auth.strategy';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
@@ -24,6 +24,13 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    if (request.url.includes('/users')) {
+      if (config.AUTH_TYPE === 'token' && this.jwt && this.jwt.getToken()) {
+        // @ts-ignore
+        request = this.addToken(request, this.jwt.getToken());
+      }
+    }
+
     if (config.AUTH_TYPE === 'token' && this.jwt && this.jwt.getToken()) {
       // @ts-ignore
       request = this.addToken(request, this.jwt.getToken());

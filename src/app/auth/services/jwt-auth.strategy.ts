@@ -16,7 +16,7 @@ export class JwtAuthStrategy implements AuthStrategy<Token> {
 
   getCurrentUser(): Observable<User | undefined> {
     const token = this.getToken();
-    if (token && token !== 'undefined') {
+    if (token) {
       const encodedPayload = token.split('.')[1];
       const payload = window.atob(encodedPayload);
       return of(JSON.parse(payload));

@@ -23,7 +23,7 @@ export class SessionAuthStrategy implements AuthStrategy<User> {
       return of(this.loggedUser);
     } else {
       return this.http
-        .get<User>(`${config['AUTH_URL']}/user`)
+        .get<User>(`${config['AUTH_URL']}/users/me`)
         .pipe(tap((user) => (this.loggedUser = user)));
     }
   }

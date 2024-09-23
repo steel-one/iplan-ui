@@ -1,16 +1,12 @@
-@import "theme_variables";
+@import 'theme_variables';
 
 a {
   text-decoration: none;
 }
 
 .mat-toolbar {
-  background-color: white;
-  letter-spacing: 0;
-}
-
-.mat-toolbar-multiple-rows {
-  min-height: auto;
+  background-color: $primary-color-35;
+  color: white;
 }
 
 .wrapper {
@@ -45,7 +41,7 @@ a {
     }
 
     &:last-child a span {
-      color: #005594;
+      color: white;
       font-size: 16px;
     }
 

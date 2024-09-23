@@ -1,0 +1,11 @@
+@use "@angular/material" as mat;
+@import "theme_variables";
+
+.mat-mdc-form-field {
+  width: 100%;
+  font-size: 13px;
+}
+
+.dialog-content {
+  padding-top: 5px;
+}

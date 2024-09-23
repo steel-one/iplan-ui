@@ -1,0 +1,98 @@
+<form autocomplete="off" novalidate action [formGroup]="fg" (ngSubmit)="save()">
+  <h1 mat-dialog-title>
+    <span *ngIf="dialogData.user.id">Edit User</span>
+  </h1>
+
+  <mat-dialog-content class="dialog-content">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        id="firstName"
+        placeholder="First Name"
+        autocomplete="given-name"
+        formControlName="firstName"
+        required
+      />
+      @if (fg.controls['firstName'].invalid) {
+        <mat-error>
+          <span *ngIf="fg.controls['firstName'].errors?.['required']">
+            First name is required.
+          </span>
+          <span *ngIf="fg.controls['firstName'].errors?.['minlength']">
+            First name must be at least 6 characters long.
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        id="lastName"
+        placeholder="Last Name"
+        autocomplete="family-name"
+        formControlName="lastName"
+        required
+      />
+      @if (fg.controls['lastName'].invalid) {
+        <mat-error>
+          <span *ngIf="fg.controls['lastName'].errors?.['required']">
+            Last name is required.
+          </span>
+          <span *ngIf="fg.controls['lastName'].errors?.['minlength']">
+            Last name must be at least 6 characters long.
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        id="email"
+        placeholder="Email"
+        autocomplete="email"
+        formControlName="email"
+        required
+      />
+      @if (fg.controls['email'].invalid) {
+        <mat-error>
+          <span *ngIf="fg.controls['email'].errors?.['required']">
+            Email is required.
+          </span>
+          <span *ngIf="fg.controls['email'].errors?.['email']">
+            Does not match email pattern
+          </span>
+        </mat-error>
+      }
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <ng-container *ngIf="errorMessage() as message">
+    <mat-error style="text-align: center">{{ message }}</mat-error>
+  </ng-container>
+
+  <div mat-dialog-actions align="end">
+    <button
+      mat-button
+      type="button"
+      [disabled]="fg.invalid || fg.disabled"
+      (click)="save()"
+      *ngIf="!dialogData.user.id"
+    >
+      SAVE AND NEW
+    </button>
+    <button
+      mat-button
+      type="button"
+      [disabled]="fg.invalid || fg.disabled"
+      (click)="save()"
+    >
+      SAVE
+    </button>
+    <button mat-button type="button" mat-dialog-close>CANCEL</button>
+  </div>
+</form>

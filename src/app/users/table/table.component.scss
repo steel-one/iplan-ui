@@ -1,0 +1,67 @@
+@use '@angular/material' as mat;
+@import 'theme_variables';
+
+.table-wrapper {
+  overflow: auto;
+}
+
+.empty {
+  display: flex;
+  height: 77px;
+  justify-content: center;
+  align-items: center;
+  color: $dark-secondary-text;
+}
+
+th,
+td {
+  padding: 0 4px;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 500;
+}
+
+// cell max width behaviour
+.mat-mdc-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// sticky actions column
+.mat-mdc-header-cell,
+.mat-mdc-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:last-of-type {
+    padding-right: 0px;
+    width: 1%;
+    min-width: 0px;
+    box-sizing: border-box;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0 4px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      padding: 0 4px;
+    }
+  }
+
+  &.mat-mdc-table-sticky {
+    border-left: 1px solid #f1f1f1;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.17);
+
+    & ~ .mat-mdc-table-sticky {
+      border-left: none;
+      box-shadow: none;
+    }
+  }
+}

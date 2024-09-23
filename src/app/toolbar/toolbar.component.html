@@ -1,20 +1,25 @@
 <mat-toolbar>
   <div class="left"></div>
-  <div class="right">
-    <button mat-flat-button disableRipple [matMenuTriggerFor]="menu">
-      <ng-container *ngIf="user$ | async as user">
+  <div class="right" *ngIf="user$ | async as user">
+    <button
+      mat-flat-button
+      disableRipple
+      [matMenuTriggerFor]="menu"
+      [matMenuTriggerData]="{ isAdmin: isAdmin$ | async, user: user$ | async }"
+    >
+      <ng-container>
         <ng-container
-          *ngIf="user.name; then nameTmpl; else emailTmpl"
+          *ngIf="user.firstName; then nameTmpl; else emailTmpl"
         ></ng-container>
         <ng-template #nameTmpl>
-          <span [matTooltip]="user.name" matTooltipPosition="below">{{
-            user.name
+          <span [matTooltip]="user.firstName" matTooltipPosition="below">{{
+            user.firstName
           }}</span>
         </ng-template>
         <ng-template #emailTmpl>
           <span>{{ user.email }}</span>
         </ng-template>
-        <span>{{ admin$ | async }}</span>
+        <span *ngIf="isAdmin$ | async"> (ADMIN)</span>
         <mat-icon>arrow_drop_down</mat-icon>
       </ng-container>
     </button>
@@ -22,12 +27,18 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu" xPosition="before">
-  <button mat-menu-item (click)="srv.updateMe()">
-    <mat-icon>person</mat-icon>
-    <span>Edit</span>
-  </button>
-  <button mat-menu-item (click)="srv.logout()">
-    <mat-icon>power_settings_new</mat-icon>
-    <span>Log Out</span>
-  </button>
+  <ng-template matMenuContent let-isAdmin="isAdmin" let-user="user">
+    <button mat-menu-item (click)="srv.goToAdminPanel()" *ngIf="isAdmin">
+      <mat-icon>people</mat-icon>
+      <span>Admin Panel</span>
+    </button>
+    <button mat-menu-item (click)="srv.updateMe(user)">
+      <mat-icon>person</mat-icon>
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item (click)="srv.logout()">
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Log Out</span>
+    </button>
+  </ng-template>
 </mat-menu>

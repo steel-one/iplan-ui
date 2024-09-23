@@ -7,41 +7,28 @@ import { DialogComponent } from '../users/dialog';
 
 @Injectable()
 export class ToolbarService {
-  user$ = this.authService
-    .getCurrentUser$()
-    .pipe(map(_userManipulation), shareReplay(1));
-  admin$ = this.user$.pipe(
-    map((u) => (u?.roles?.includes('ADMIN') ? '(ADMIN)' : '')),
-  );
+  user$ = this.authService.getCurrentUser$().pipe(shareReplay(1));
+  isAdmin$ = this.user$.pipe(map((u) => !!u?.roles?.includes('ADMIN')));
 
   constructor(
     private authService: AuthService,
     private dialog: MatDialog,
   ) {}
 
+  goToAdminPanel() {
+    this.authService.goToAdminPanel();
+  }
+
   logout() {
     this.authService.logout().subscribe();
   }
 
-  updateMe() {
+  updateMe(user: User) {
     const config = {
       width: '400px',
       disableClose: true,
+      data: { user },
     };
     return this.dialog.open(DialogComponent, config).afterClosed();
   }
-}
-
-export function _userManipulation(user: User | undefined) {
-  if (user) {
-    if (user.firstName) {
-      const name = [user.firstName, user.lastName]
-        .filter((item) => !!item)
-        .join(' ');
-      return { name, roles: user.roles };
-    }
-    const email = user.email;
-    return { email, roles: user.roles };
-  }
-  return;
 }

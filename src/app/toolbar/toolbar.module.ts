@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { RefreshService } from 'src/common/refresh.service';
 import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
@@ -20,5 +21,6 @@ import { ToolbarComponent } from './toolbar.component';
   ],
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
+  providers: [RefreshService],
 })
 export class ToolbarModule {}

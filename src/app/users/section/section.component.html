@@ -1,0 +1,35 @@
+<frontend-simple-toolbar title="Users">
+  <search-box (searchChanges)="srv.searchValue$.next($event)"></search-box>
+</frontend-simple-toolbar>
+
+<mat-card class="mat-elevation-z1">
+  <mat-card-content>
+    <ng-container
+      *ngIf="srv.loading$ | async; then skeletonTmpl; else tableTmpl"
+    >
+    </ng-container>
+    <ng-template #skeletonTmpl>
+      <skeleton-table></skeleton-table>
+    </ng-template>
+    <ng-template #tableTmpl>
+      <frontend-section-table
+        [pageItems]="srv.items$ | async"
+        [collectionLength]="srv.collectionLength$ | async"
+        [paginatorPageSize]="(srv.paginatorPageSize$ | async)!"
+        [paginatorPageIndex]="(srv.paginatorPageIndex$ | async)!"
+        [sortActive]="(srv.sortActive$ | async)!"
+        [sortDirection]="(srv.sortDirection$ | async)!"
+        (page)="
+          srv.paginatorPageIndex$.next($event.pageIndex);
+          srv.paginatorPageSize$.next($event.pageSize)
+        "
+        (sort)="
+          srv.sortActive$.next($event.active);
+          srv.sortDirection$.next($event.direction)
+        "
+        (update)="srv.openDialog($event)"
+        (block)="srv.block($event)"
+      ></frontend-section-table>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

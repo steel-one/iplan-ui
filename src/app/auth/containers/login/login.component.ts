@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, filter, retryWhen, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, switchMap, tap } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           this.loading$.next(false);
           throw new HttpErrorResponse(err);
         }),
-        retryWhen(this.invalidOtp(loginRequest)),
+        // retryWhen(this.invalidOtp(loginRequest)), // TODO: meanwhile OTP case is not necessary
       )
       .subscribe((user) => {
         this.router.navigate([

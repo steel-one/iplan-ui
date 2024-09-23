@@ -17,7 +17,7 @@ import { AUTH_STRATEGY, AuthStrategy } from './auth.strategy';
 })
 export class AuthService {
   public readonly INITIAL_PATH = '/app';
-  public readonly ADMIN_PATH = '/admin';
+  public readonly ADMIN_PATH = '/app/admin';
   public readonly LOGIN_PATH = '/login';
   public readonly CONFIRM_PATH = '/confirm';
 
@@ -104,5 +104,9 @@ export class AuthService {
 
   private doLogoutUser() {
     this.auth.doLogoutUser();
+  }
+
+  goToAdminPanel() {
+    this.router.navigate(['/app/admin']);
   }
 }

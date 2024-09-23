@@ -1,0 +1,37 @@
+<form autocomplete="off" novalidate action [formGroup]="form">
+  <h2 mat-dialog-title>Confirm operation</h2>
+  <mat-dialog-content>
+    <div class="mat-body-2">
+      <p>{{ data.message }}</p>
+    </div>
+    <div class="mat-body-2">
+      <p>Are you sure you want to proceed?</p>
+    </div>
+    <!-- NAME -->
+    <div class="mat-body-2">
+      <p>
+        Please type in <strong>{{ data.name }}</strong> to confirm.
+      </p>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="form.controls['name'].errors?.['nameWrongValue']">
+          Enter <strong>{{ data.name }}</strong> to confirm.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <div mat-dialog-actions align="end">
+    <button
+      [disabled]="form.invalid"
+      mat-button
+      [mat-dialog-close]="true"
+      data-cy="proceed"
+    >
+      PROCEED
+    </button>
+    <button mat-button [mat-dialog-close]="false" data-cy="cancel">CANCEL</button>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+:host {
+  font-size: 15px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+.mat-mdc-form-field {
+  font-size: 13px;
+}

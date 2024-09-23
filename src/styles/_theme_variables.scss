@@ -50,6 +50,7 @@ $ph-green: #016f41;
 $ph-yellow: #fdd835;
 $ph-red: #ef5350;
 $ph-orange: #f8a55c;
+$ph-dark: #262525;
 
 $dark-primary-text: rgba(black, 0.87);
 $dark-secondary-text: rgba(black, 0.54);
@@ -61,3 +62,5 @@ $light-secondary-text: rgba(white, 0.7);
 $light-disabled-text: rgba(white, 0.5);
 $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
+
+$primary-color-35: map-get(map-get($green-palette, primary), 35);

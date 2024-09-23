@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { TrimDirectiveModule } from 'projects/common/src/lib/component-tools';
 import { LoaderModule } from 'src/common-ui/loader';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthInterceptor } from './auth.interceptor';
 import { OtpComponent } from './components/otp-dialog/otp.component';
 import { ConfirmComponent } from './containers/confirm/confirm.component';
 import { LoginComponent } from './containers/login/login.component';
@@ -21,7 +19,6 @@ import { PasswordComponent } from './containers/password/password.component';
 import { RecoverComponent } from './containers/recover/recover.component';
 import { SignupComponent } from './containers/signup/signup.component';
 import { ForRolesDirective } from './directives/for-roles.directive';
-import { authStrategyProvider } from './services/auth.strategy';
 
 @NgModule({
   declarations: [
@@ -48,14 +45,6 @@ import { authStrategyProvider } from './services/auth.strategy';
     MatIconModule,
     TrimDirectiveModule,
     LoaderModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    authStrategyProvider,
   ],
 })
 export class AuthModule {}

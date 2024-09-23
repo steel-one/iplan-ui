@@ -37,7 +37,7 @@ function isLogoutRequest(error: HttpErrorResponse): boolean {
 }
 
 function isQueryForLoggedUser(error: HttpErrorResponse): boolean {
-  return !!error.url?.endsWith(`${config['AUTH_URL']}/user`);
+  return !!error.url?.includes(`${config['API_URL']}/users`);
 }
 
 function isOtpRequired(error: HttpErrorResponse): boolean {

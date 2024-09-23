@@ -1,19 +1,25 @@
 import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { RemoveConfirmationDialogsModule } from 'projects/common/src/lib/remove-confirmation-dialog';
 import { LoaderModule } from 'src/common-ui/loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { authStrategyProvider } from './auth/services/auth.strategy';
 import { HttpErrorHandler } from './error.handler';
 import { httpErrorInterceptor } from './error.interceptor';
 import { SidebarModule } from './sidebar/sidebar.module';
-import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,12 +34,18 @@ import { UsersModule } from './users/users.module';
     SidebarModule,
     AuthModule,
     AppRoutingModule,
-    UsersModule,
+    RemoveConfirmationDialogsModule,
   ],
   providers: [
-    AppService,
     AppUpdaterService,
     HttpErrorHandler,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    authStrategyProvider,
+    AppService,
     provideHttpClient(withInterceptors([httpErrorInterceptor])),
   ],
   bootstrap: [AppComponent],

@@ -12,7 +12,7 @@
     <!-- OPEN -->
     <ng-template #openTmpl>
       <div id="open">
-        <div class="logo">
+        <div class="logo" routerLinkActive="active" routerLink="/">
           <img src="/assets/logo.png" title="IPlan" />
         </div>
 
@@ -43,7 +43,12 @@
     <!-- CLOSED -->
     <ng-template #closedTmpl>
       <div id="closed">
-        <div class="logo" matTooltip="IPlan">
+        <div
+          class="logo"
+          matTooltip="IPlan"
+          routerLinkActive="active"
+          routerLink="/"
+        >
           <img src="/assets/logo-short.png" />
         </div>
 
