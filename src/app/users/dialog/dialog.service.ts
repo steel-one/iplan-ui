@@ -17,7 +17,7 @@ export class DialogService {
 
   update(user: FormValue) {
     return this.http
-      .put<User>(`${config['API_URL']}/user`, {
+      .put<User>(`${config['API_URL']}/users`, {
         user,
       })
       .pipe(
@@ -25,8 +25,8 @@ export class DialogService {
           if (response.errors) {
             throw response.errors[0];
           }
+          this.refreshSrv.refresh();
           return response;
-          return this.refreshSrv.refresh();
         }),
         catchError((err) => {
           const error = {

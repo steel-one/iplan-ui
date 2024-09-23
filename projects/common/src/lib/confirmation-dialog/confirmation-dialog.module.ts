@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RemoveConfirmationDialogComponent } from './remove-confirmation-dialog.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { RemoveConfirmationDialogComponent } from './remove-confirmation-dialog.
     MatFormFieldModule,
     MatInputModule,
   ],
-  declarations: [RemoveConfirmationDialogComponent],
+  declarations: [ConfirmationDialogComponent],
 })
-export class RemoveConfirmationDialogsModule {}
+export class ConfirmationDialogsModule {}

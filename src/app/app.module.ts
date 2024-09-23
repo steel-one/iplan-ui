@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { RemoveConfirmationDialogsModule } from 'projects/common/src/lib/remove-confirmation-dialog';
+import { ConfirmationDialogsModule } from 'projects/common/src/lib/confirmation-dialog';
 import { LoaderModule } from 'src/common-ui/loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
@@ -34,7 +34,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
     SidebarModule,
     AuthModule,
     AppRoutingModule,
-    RemoveConfirmationDialogsModule,
+    ConfirmationDialogsModule,
   ],
   providers: [
     AppUpdaterService,

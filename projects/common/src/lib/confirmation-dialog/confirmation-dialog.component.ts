@@ -10,17 +10,20 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'frontend-app-remove-confirmation-dialog',
-  templateUrl: 'remove-confirmation-dialog.component.html',
-  styleUrls: ['./remove-confirmation-dialog.component.scss'],
+  selector: 'frontend-app-confirmation-dialog',
+  templateUrl: 'confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.scss'],
 })
-export class RemoveConfirmationDialogComponent {
+export class ConfirmationDialogComponent {
   form: UntypedFormGroup;
-  nameCtrl = new UntypedFormControl('', [Validators.required, this.nameValidator()]);
+  nameCtrl = new UntypedFormControl('', [
+    Validators.required,
+    this.nameValidator(),
+  ]);
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: { message: string; name: string }
+    public data: { message: string; name: string },
   ) {
     this.form = new UntypedFormGroup({
       name: this.nameCtrl,

@@ -1,12 +1,12 @@
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RemoveConfirmationDialogComponent } from './remove-confirmation-dialog.component';
-import { RemoveConfirmationDialogsModule } from './remove-confirmation-dialog.module';
+import { ConfirmationDialogComponent } from './confirmation-dialog.component';
+import { ConfirmationDialogsModule } from './confirmation-dialog.module';
 
 describe('Remove Confirmation Dialog', () => {
   beforeEach(() => {
-    cy.mount(RemoveConfirmationDialogComponent, {
-      imports: [RemoveConfirmationDialogsModule, BrowserAnimationsModule],
+    cy.mount(ConfirmationDialogComponent, {
+      imports: [ConfirmationDialogsModule, BrowserAnimationsModule],
       providers: [
         {
           provide: MAT_DIALOG_DATA,
@@ -17,8 +17,8 @@ describe('Remove Confirmation Dialog', () => {
   });
 
   it('should mount', () => {
-    cy.mount(RemoveConfirmationDialogComponent, {
-      imports: [RemoveConfirmationDialogsModule, BrowserAnimationsModule],
+    cy.mount(ConfirmationDialogComponent, {
+      imports: [ConfirmationDialogsModule, BrowserAnimationsModule],
       providers: [
         {
           provide: MAT_DIALOG_DATA,

@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SortDirection } from '@angular/material/sort';
 import { User } from '@models/user';
-import { RemoveConfirmationDialogComponent } from 'projects/common/src/lib/remove-confirmation-dialog';
+import { ConfirmationDialogComponent } from 'projects/common/src/lib/confirmation-dialog';
 import {
   combineLatest,
   EMPTY,
@@ -157,7 +157,7 @@ export class SectionService {
       name: user.email,
     };
     this.dialog
-      .open(RemoveConfirmationDialogComponent, {
+      .open(ConfirmationDialogComponent, {
         width: '500px',
         data,
       })
