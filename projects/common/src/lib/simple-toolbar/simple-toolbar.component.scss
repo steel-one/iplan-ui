@@ -5,25 +5,31 @@ a {
 }
 
 .mat-toolbar {
-  background-color: $primary-color-35;
-  color: white;
+  background-color: white;
+  letter-spacing: 0;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: auto;
 }
 
 .wrapper {
   display: flex;
   height: 14px;
-  margin-left: -8px;
+  font-weight: 500;
 }
 
 .mat-toolbar-row {
   padding-left: 24px;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .content-wrapper {
   display: flex;
+  gap: 24px;
   align-items: center;
-  flex: 1;
-  justify-content: flex-end;
 }
 
 // BREADCRUMBS
@@ -41,7 +47,7 @@ a {
     }
 
     &:last-child a span {
-      color: white;
+      color: #005594;
       font-size: 16px;
     }
 

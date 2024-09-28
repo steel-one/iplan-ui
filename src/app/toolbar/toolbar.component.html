@@ -2,7 +2,7 @@
   <div class="left"></div>
   <div class="right" *ngIf="user$ | async as user">
     <button
-      mat-flat-button
+      mat-button
       disableRipple
       [matMenuTriggerFor]="menu"
       [matMenuTriggerData]="{ isAdmin: isAdmin$ | async, user: user$ | async }"

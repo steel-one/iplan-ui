@@ -1,10 +1,11 @@
+@use 'sass:map';
 @import 'theme_variables';
 
 .mat-toolbar {
   display: flex;
   justify-content: space-between;
   height: 40px;
-  background-color: $ph-green;
+  // background-color: map.get(map.get($_palettes, tertiary), 60);
 }
 
 button {

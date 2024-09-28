@@ -1,7 +1,9 @@
 @use '@angular/material' as mat;
 @import 'theme_variables';
 
-@include mat.all-component-typographies();
-@include mat.core();
-
-@include mat.form-field-density(-2);
+html {
+  @include mat.all-component-typographies();
+  @include mat.core();
+  @include mat.all-component-themes($dark-theme);
+  @include mat.form-field-density(-2);
+}

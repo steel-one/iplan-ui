@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 @import 'fonts';
 @import 'material_icons';
@@ -7,19 +8,77 @@
   -webkit-font-smoothing: antialiased;
 }
 
-html,
-body {
-  margin: 0;
+html {
   height: 100%;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
-  color: white;
   background-image: url('../assets/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-}
 
-.mdc-button__label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  body {
+    display: contents;
+    color: white;
+  }
+
+  .mdc-button {
+    letter-spacing: 0;
+  }
+  .mat-mdc-dialog-actions {
+    padding: 8px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 52px;
+    align-items: center;
+    box-sizing: content-box;
+  }
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 8px;
+  }
+  .mat-mdc-dialog-container .mat-mdc-dialog-title + .mat-mdc-dialog-content {
+    padding-top: 5px;
+  }
+  .mat-drawer {
+    border-radius: initial;
+  }
+  .mdc-button__label {
+    display: flex;
+    align-items: center;
+  }
+
+  .first-header-row,
+  .mat-mdc-table {
+    border-radius: 4px;
+  }
+  .mat-mdc-card {
+    border-radius: 4px;
+  }
+  .mat-mdc-card-content {
+    padding: 0;
+    &:first-child {
+      padding-top: 0;
+    }
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+  .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    padding: 0 24px;
+  }
+  table {
+    th,
+    td {
+      padding: 0 24px;
+    }
+
+    td:last-child,
+    th:last-child {
+      padding: 0;
+    }
+  }
+
+  .mat-mdc-form-field-error {
+    color: #ff04f0;
+    font-size: 16px;
+  }
 }

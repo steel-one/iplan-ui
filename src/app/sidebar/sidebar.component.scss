@@ -1,3 +1,4 @@
+@use 'sass:map';
 @use '@angular/material' as mat;
 @import 'theme_variables';
 
@@ -10,13 +11,12 @@
 }
 
 .mat-sidenav {
-  background-color: $ph-green;
   box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+  // background-color: map.get(map.get($_palettes, tertiary), 60);
 }
 
 .logo {
   height: 48px;
-  width: 100%;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -108,7 +108,7 @@
     padding: 0 16px;
     height: 90px;
     img {
-      height: 100%;
+      width: 100%;
     }
   }
   .mat-mdc-list-item .item-content span {
