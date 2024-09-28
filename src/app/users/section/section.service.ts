@@ -119,7 +119,6 @@ export class SectionService {
         throw err;
       },
     });
-    this.refreshSrv.refresh();
   }
 
   private _getData(variables: QueryParams) {
