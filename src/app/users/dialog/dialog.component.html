@@ -12,18 +12,10 @@
         placeholder="First Name"
         autocomplete="given-name"
         formControlName="firstName"
-        required
       />
-      @if (fg.controls['firstName'].invalid) {
-        <mat-error>
-          <span *ngIf="fg.controls['firstName'].errors?.['required']">
-            First name is required.
-          </span>
-          <span *ngIf="fg.controls['firstName'].errors?.['minlength']">
-            First name must be at least 6 characters long.
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['firstName'].errors">
+        <span>{{ getErrorMessage('firstName') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -34,18 +26,10 @@
         placeholder="Last Name"
         autocomplete="family-name"
         formControlName="lastName"
-        required
       />
-      @if (fg.controls['lastName'].invalid) {
-        <mat-error>
-          <span *ngIf="fg.controls['lastName'].errors?.['required']">
-            Last name is required.
-          </span>
-          <span *ngIf="fg.controls['lastName'].errors?.['minlength']">
-            Last name must be at least 6 characters long.
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['lastName'].errors">
+        <span>{{ getErrorMessage('lastName') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -56,18 +40,10 @@
         placeholder="Email"
         autocomplete="email"
         formControlName="email"
-        required
       />
-      @if (fg.controls['email'].invalid) {
-        <mat-error>
-          <span *ngIf="fg.controls['email'].errors?.['required']">
-            Email is required.
-          </span>
-          <span *ngIf="fg.controls['email'].errors?.['email']">
-            Does not match email pattern
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['email'].errors">
+        <span>{{ getErrorMessage('email') }}</span>
+      </mat-error>
     </mat-form-field>
   </mat-dialog-content>
 

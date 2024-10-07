@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -24,11 +25,14 @@ export class ConfirmComponent implements OnInit {
     const code = this.activeRoute.snapshot.queryParams['code'];
 
     if (email && code) {
-      this.authService.confirm(email, code).subscribe(() => {
-        this.loading$.next(true);
-        this.isConfirmed = true;
-        this.router.navigate([this.authService.LOGIN_PATH]);
-      });
+      this.authService
+        .confirm(email, code)
+        .pipe(takeUntilDestroyed())
+        .subscribe(() => {
+          this.loading$.next(true);
+          this.isConfirmed = true;
+          this.router.navigate([this.authService.LOGIN_PATH]);
+        });
     }
   }
 }

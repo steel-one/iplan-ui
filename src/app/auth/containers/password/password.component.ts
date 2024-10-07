@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getFormControlError } from '@common/functions/getFormControlError';
 import { Token } from '@models/token';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -15,7 +16,7 @@ export class PasswordComponent implements OnInit {
   loading$ = new BehaviorSubject(false);
 
   public email!: string;
-  public passwordForm!: FormGroup;
+  public fg!: FormGroup;
   public recovery: boolean = false;
   public task!: string;
   private code!: string;
@@ -41,13 +42,17 @@ export class PasswordComponent implements OnInit {
     this.recovery = this.activeRoute.snapshot.queryParams['recovery'];
     this.task = this.recovery ? 'Recover' : 'Set';
 
-    this.passwordForm = this.formBuilder.group({
-      password: ['', Validators.minLength(8)],
+    this.fg = this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   get f() {
-    return this.passwordForm.controls;
+    return this.fg.controls;
+  }
+
+  getErrorMessage(controlName: string): string {
+    return getFormControlError(this.fg, controlName);
   }
 
   setPassword() {

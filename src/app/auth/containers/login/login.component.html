@@ -6,7 +6,7 @@
 </ng-template>
 
 <ng-template #formTmpl>
-  <form [formGroup]="loginForm">
+  <form [formGroup]="fg">
     <div class="header">Login to your account</div>
 
     <mat-form-field>
@@ -16,8 +16,10 @@
         id="email"
         placeholder="Email"
         formControlName="email"
-        required
       />
+      <mat-error *ngIf="fg.controls['email'].errors">
+        <span>{{ getErrorMessage('email') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -29,19 +31,8 @@
         placeholder="Password"
         autocomplete="new-password"
         formControlName="password"
-        required
         [type]="hide() ? 'password' : 'text'"
       />
-      @if (loginForm.controls['password'].invalid) {
-        <mat-error>
-          <span *ngIf="loginForm.controls['password'].errors?.['required']">
-            Password is required.
-          </span>
-          <span *ngIf="loginForm.controls['password'].errors?.['minlength']">
-            Must be at least 8 characters.
-          </span>
-        </mat-error>
-      }
       <button
         mat-icon-button
         matSuffix
@@ -51,6 +42,9 @@
       >
         <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
+      <mat-error *ngIf="fg.controls['password'].errors">
+        <span>{{ getErrorMessage('password') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <div class="divider"></div>
@@ -60,7 +54,7 @@
         color="primary"
         type="submit"
         (click)="login()"
-        [disabled]="!loginForm.valid"
+        [disabled]="!fg.valid"
         style="height: 45px"
       >
         <mat-icon mat-icon>login</mat-icon>

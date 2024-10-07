@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { getFormControlError } from '@common/functions/getFormControlError';
 import { DialogData, FormValue } from './dialog-data';
 import { DialogService } from './dialog.service';
 
@@ -30,12 +31,16 @@ export class DialogComponent {
   ) {
     this.fg = this.fb.group({
       id: new FormControl(''),
-      firstName: new FormControl('', [Validators.minLength(3)]),
-      lastName: new FormControl('', [Validators.minLength(1)]),
-      email: new FormControl('', [Validators.email]),
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(1)]],
+      email: ['', [Validators.required, Validators.email]],
     });
 
     this.fg.patchValue(dialogData.user as FormValue);
+  }
+
+  getErrorMessage(controlName: string): string {
+    return getFormControlError(this.fg, controlName);
   }
 
   save() {

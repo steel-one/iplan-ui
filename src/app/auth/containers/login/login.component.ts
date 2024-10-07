@@ -7,6 +7,7 @@ import { catchError, filter, switchMap, tap } from 'rxjs/operators';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { getFormControlError } from '@common/functions/getFormControlError';
 import { ILoginRequest } from '@models/loginRequest';
 import { SnackBarComponent } from 'src/common-ui/snackbar/snackbar.component';
 import { OtpComponent } from '../../components/otp-dialog/otp.component';
@@ -20,7 +21,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loading$ = new BehaviorSubject(false);
 
-  loginForm!: FormGroup;
+  fg!: FormGroup;
 
   hide = signal(true);
 
@@ -39,9 +40,9 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      email: ['', Validators.email],
-      password: ['', Validators.minLength(8)],
+    this.fg = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
 
     const msg = this.route.snapshot.queryParams['msg'];
@@ -54,7 +55,11 @@ export class LoginComponent implements OnInit {
   }
 
   get f() {
-    return this.loginForm.controls;
+    return this.fg.controls;
+  }
+
+  getErrorMessage(controlName: string): string {
+    return getFormControlError(this.fg, controlName);
   }
 
   login() {

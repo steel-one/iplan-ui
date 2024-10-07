@@ -7,7 +7,7 @@
 
 <ng-template #formTmpl>
   <ng-container *ngIf="!(isRequestSent$ | async); else requestSent">
-    <form [formGroup]="recoveryForm">
+    <form [formGroup]="fg">
       <div class="header">Recover your password</div>
       <mat-form-field>
         <input
@@ -18,16 +18,9 @@
           formControlName="email"
           required
         />
-        @if (recoveryForm.controls['email'].invalid) {
-          <mat-error>
-            <span *ngIf="recoveryForm.controls['email'].errors?.['required']">
-              Email is required.
-            </span>
-            <span *ngIf="recoveryForm.controls['email'].errors?.['email']">
-              Does not match email pattern
-            </span>
-          </mat-error>
-        }
+        <mat-error *ngIf="fg.controls['email'].errors">
+          <span>{{ getErrorMessage('email') }}</span>
+        </mat-error>
       </mat-form-field>
 
       <button
@@ -35,7 +28,7 @@
         color="accent"
         type="submit"
         (click)="recover()"
-        [disabled]="!recoveryForm.valid"
+        [disabled]="!fg.valid"
       >
         Recover password
       </button>

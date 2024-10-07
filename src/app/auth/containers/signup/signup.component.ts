@@ -1,11 +1,7 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { getFormControlError } from '@common/functions/getFormControlError';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
@@ -15,10 +11,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./../auth.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   loading$ = new BehaviorSubject(false);
 
-  signupForm!: FormGroup;
+  fg!: FormGroup;
 
   hide = signal(true);
   hideRepeat = signal(true);
@@ -39,20 +35,22 @@ export class SignupComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
-  ) {}
-
-  ngOnInit() {
-    this.signupForm = this.formBuilder.group({
-      firstName: ['', Validators.minLength(3)],
-      lastName: ['', Validators.minLength(1)],
-      email: ['', Validators.email],
-      password: ['', Validators.minLength(8)],
-      repeatPassword: ['', Validators.minLength(8)],
+  ) {
+    this.fg = this.formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(1)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      repeatPassword: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   get f() {
-    return this.signupForm.controls;
+    return this.fg.controls;
+  }
+
+  getErrorMessage(controlName: string): string {
+    return getFormControlError(this.fg, controlName);
   }
 
   signup() {

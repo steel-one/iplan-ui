@@ -1,12 +1,13 @@
-<ng-container *ngIf="loading$ | async; then loaderTmpl; else formTmpl">
-</ng-container>
+<ng-container
+  *ngIf="loading$ | async; then loaderTmpl; else formTmpl"
+></ng-container>
 
 <ng-template #loaderTmpl>
   <loader></loader>
 </ng-template>
 
 <ng-template #formTmpl>
-  <form [formGroup]="signupForm">
+  <form [formGroup]="fg">
     <div class="header">Create your account</div>
 
     <mat-form-field>
@@ -17,18 +18,10 @@
         placeholder="First Name"
         autocomplete="given-name"
         formControlName="firstName"
-        required
       />
-      @if (signupForm.controls['firstName'].invalid) {
-        <mat-error>
-          <span *ngIf="signupForm.controls['firstName'].errors?.['required']">
-            First name is required.
-          </span>
-          <span *ngIf="signupForm.controls['firstName'].errors?.['minlength']">
-            First name must be at least 6 characters long.
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['firstName'].errors">
+        <span>{{ getErrorMessage('firstName') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -39,18 +32,10 @@
         placeholder="Last Name"
         autocomplete="family-name"
         formControlName="lastName"
-        required
       />
-      @if (signupForm.controls['lastName'].invalid) {
-        <mat-error>
-          <span *ngIf="signupForm.controls['lastName'].errors?.['required']">
-            Last name is required.
-          </span>
-          <span *ngIf="signupForm.controls['lastName'].errors?.['minlength']">
-            Last name must be at least 6 characters long.
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['lastName'].errors">
+        <span>{{ getErrorMessage('lastName') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -61,18 +46,10 @@
         placeholder="Email"
         autocomplete="email"
         formControlName="email"
-        required
       />
-      @if (signupForm.controls['email'].invalid) {
-        <mat-error>
-          <span *ngIf="signupForm.controls['email'].errors?.['required']">
-            Email is required.
-          </span>
-          <span *ngIf="signupForm.controls['email'].errors?.['email']">
-            Does not match email pattern
-          </span>
-        </mat-error>
-      }
+      <mat-error *ngIf="fg.controls['email'].errors">
+        <span>{{ getErrorMessage('email') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -84,19 +61,8 @@
         placeholder="Password"
         autocomplete="new-password"
         formControlName="password"
-        required
         [type]="hide() ? 'password' : 'text'"
       />
-      @if (signupForm.controls['password'].invalid) {
-        <mat-error>
-          <span *ngIf="signupForm.controls['password'].errors?.['required']">
-            Password is required.
-          </span>
-          <span *ngIf="signupForm.controls['password'].errors?.['minlength']">
-            Must be at least 8 characters.
-          </span>
-        </mat-error>
-      }
       <button
         mat-icon-button
         matSuffix
@@ -106,6 +72,9 @@
       >
         <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
+      <mat-error *ngIf="fg.controls['password'].errors">
+        <span>{{ getErrorMessage('password') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -117,23 +86,8 @@
         placeholder="Password"
         autocomplete="new-password"
         formControlName="repeatPassword"
-        required
         [type]="hideRepeat() ? 'password' : 'text'"
       />
-      @if (signupForm.controls['repeatPassword'].invalid) {
-        <mat-error>
-          <span
-            *ngIf="signupForm.controls['repeatPassword'].errors?.['required']"
-          >
-            Repeat password is required.
-          </span>
-          <span
-            *ngIf="signupForm.controls['repeatPassword'].errors?.['minlength']"
-          >
-            Must be at least 8 characters.
-          </span>
-        </mat-error>
-      }
       <button
         mat-icon-button
         matSuffix
@@ -145,6 +99,9 @@
           hideRepeat() ? 'visibility_off' : 'visibility'
         }}</mat-icon>
       </button>
+      <mat-error *ngIf="fg.controls['repeatPassword'].errors">
+        <span>{{ getErrorMessage('repeatPassword') }}</span>
+      </mat-error>
     </mat-form-field>
 
     <ng-container *ngIf="errorMessage() as message">
@@ -157,7 +114,7 @@
         color="accent"
         type="submit"
         (click)="signup()"
-        [disabled]="!signupForm.valid"
+        [disabled]="!fg.valid"
       >
         Sign up
       </button>

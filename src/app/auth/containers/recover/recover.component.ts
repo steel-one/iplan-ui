@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getFormControlError } from '@common/functions/getFormControlError';
 import { BehaviorSubject } from 'rxjs';
 import { PasswordService } from '../../services/password.service';
 
@@ -13,7 +14,7 @@ export class RecoverComponent implements OnInit {
   loading$ = new BehaviorSubject(false);
 
   isRequestSent$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  public recoveryForm!: FormGroup;
+  public fg!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,13 +23,17 @@ export class RecoverComponent implements OnInit {
 
   ngOnInit(): void {
     this.isRequestSent$.next(false);
-    this.recoveryForm = this.formBuilder.group({
+    this.fg = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
   get f() {
-    return this.recoveryForm.controls;
+    return this.fg.controls;
+  }
+
+  getErrorMessage(controlName: string): string {
+    return getFormControlError(this.fg, controlName);
   }
 
   recover() {
