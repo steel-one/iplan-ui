@@ -32,10 +32,7 @@
               "src/config.staging.json",
               "src/config.prod.json"
             ],
-            "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]
@@ -100,10 +97,7 @@
               "src/config.staging.json",
               "src/config.prod.json"
             ],
-            "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": ["src/styles"]

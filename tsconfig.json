@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "common": ["dist/common"],
+      "@common/*": ["src/common/*"],
       "@models/*": [
         "./app/models/*", // fix TS
         "./src/app/models/*" // fix VSCode
