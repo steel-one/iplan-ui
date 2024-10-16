@@ -9,25 +9,25 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
-import { TrimDirectiveModule } from 'projects/common/src/lib/component-tools';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { DialogComponent } from './dialog.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatDialogModule,
-        RouterModule,
-        TrimDirectiveModule,
-        DialogComponent,
-    ],
-    exports: [DialogComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    RouterModule,
+    TrimDirective,
+    DialogComponent,
+  ],
+  exports: [DialogComponent],
 })
 export class DialogModule {}

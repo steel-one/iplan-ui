@@ -1,46 +1,56 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { catchError, filter, switchMap, tap } from 'rxjs/operators';
 
+import { AsyncPipe, NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import {
+  MatError,
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { getFormControlError } from '@common/functions/getFormControlError';
+import { getFormControlError } from '@functions/getFormControlError';
 import { ILoginRequest } from '@models/loginRequest';
 import { SnackBarComponent } from 'src/common-ui/snackbar/snackbar.component';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
+import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
 import { OtpComponent } from '../../components/otp-dialog/otp.component';
 import { AuthService } from '../../services/auth.service';
-import { NgIf, AsyncPipe } from '@angular/common';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
-import { MatFormField, MatError, MatLabel, MatSuffix } from '@angular/material/form-field';
-import { TrimDirective } from '../../../../../projects/common/src/lib/component-tools/trim-directive';
-import { MatInput } from '@angular/material/input';
-import { MatIconButton, MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./../auth.scss'],
-    standalone: true,
-    imports: [
-        NgIf,
-        LoaderComponent,
-        ReactiveFormsModule,
-        MatFormField,
-        TrimDirective,
-        MatInput,
-        MatError,
-        MatLabel,
-        MatIconButton,
-        MatSuffix,
-        MatIcon,
-        MatButton,
-        RouterLink,
-        AsyncPipe,
-    ],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./../auth.scss'],
+  standalone: true,
+  imports: [
+    NgIf,
+    LoaderComponent,
+    ReactiveFormsModule,
+    MatFormField,
+    TrimDirective,
+    MatInput,
+    MatError,
+    MatLabel,
+    MatIconButton,
+    MatSuffix,
+    MatIcon,
+    MatButton,
+    RouterLink,
+    AsyncPipe,
+  ],
 })
 export class LoginComponent implements OnInit {
   loading$ = new BehaviorSubject(false);

@@ -2,25 +2,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatFormField, MatSuffix } from '@angular/material/form-field';
-import { TrimDirective } from '../component-tools/trim-directive';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { MatInput } from '@angular/material/input';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-    selector: 'search-box',
-    templateUrl: './search-box.component.html',
-    styleUrls: ['./search-box.component.scss'],
-    standalone: true,
-    imports: [
-        MatFormField,
-        TrimDirective,
-        MatInput,
-        ReactiveFormsModule,
-        MatIconButton,
-        MatSuffix,
-        MatIcon,
-    ],
+  selector: 'search-box',
+  templateUrl: './search-box.component.html',
+  styleUrls: ['./search-box.component.scss'],
+  standalone: true,
+  imports: [
+    MatFormField,
+    TrimDirective,
+    MatInput,
+    ReactiveFormsModule,
+    MatIconButton,
+    MatSuffix,
+    MatIcon,
+  ],
 })
 export class SearchBoxComponent implements OnInit {
   @Output() searchChanges = new EventEmitter<string>();

@@ -1,32 +1,37 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { getFormControlError } from '@common/functions/getFormControlError';
-import { BehaviorSubject } from 'rxjs';
-import { PasswordService } from '../../services/password.service';
-import { NgIf, AsyncPipe } from '@angular/common';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
-import { MatFormField, MatError } from '@angular/material/form-field';
-import { TrimDirective } from '../../../../../projects/common/src/lib/component-tools/trim-directive';
-import { MatInput } from '@angular/material/input';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { MatError, MatFormField } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { getFormControlError } from '@functions/getFormControlError';
+import { BehaviorSubject } from 'rxjs';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
+import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { PasswordService } from '../../services/password.service';
 
 @Component({
-    selector: 'recover',
-    templateUrl: './recover.component.html',
-    styleUrls: ['./recover.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        NgIf,
-        LoaderComponent,
-        ReactiveFormsModule,
-        MatFormField,
-        TrimDirective,
-        MatInput,
-        MatError,
-        MatButton,
-        AsyncPipe,
-    ],
+  selector: 'recover',
+  templateUrl: './recover.component.html',
+  styleUrls: ['./recover.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    LoaderComponent,
+    ReactiveFormsModule,
+    MatFormField,
+    TrimDirective,
+    MatInput,
+    MatError,
+    MatButton,
+    AsyncPipe,
+  ],
 })
 export class RecoverComponent implements OnInit {
   loading$ = new BehaviorSubject(false);

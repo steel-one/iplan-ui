@@ -1,37 +1,50 @@
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { NgIf } from '@angular/common';
 import { Component, Inject, signal } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { MatError, MatFormField } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { getFormControlError } from '@common/functions/getFormControlError';
+import { getFormControlError } from '@functions/getFormControlError';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { DialogData, FormValue } from './dialog-data';
 import { DialogService } from './dialog.service';
-import { NgIf } from '@angular/common';
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import { MatFormField, MatError } from '@angular/material/form-field';
-import { TrimDirective } from '../../../../projects/common/src/lib/component-tools/trim-directive';
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
 
 @Component({
-    selector: 'frontend-section-dialog',
-    templateUrl: './dialog.component.html',
-    styleUrls: ['./dialog.component.scss'],
-    providers: [DialogService],
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        MatDialogTitle,
-        NgIf,
-        CdkScrollable,
-        MatDialogContent,
-        MatFormField,
-        TrimDirective,
-        MatInput,
-        MatError,
-        MatDialogActions,
-        MatButton,
-        MatDialogClose,
-    ],
+  selector: 'frontend-section-dialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss'],
+  providers: [DialogService],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    MatDialogTitle,
+    NgIf,
+    CdkScrollable,
+    MatDialogContent,
+    MatFormField,
+    TrimDirective,
+    MatInput,
+    MatError,
+    MatDialogActions,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class DialogComponent {
   errorMessage = signal('');

@@ -1,39 +1,49 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { getFormControlError } from '@common/functions/getFormControlError';
-import { BehaviorSubject } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
-import { NgIf, AsyncPipe } from '@angular/common';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
-import { MatFormField, MatError, MatLabel, MatSuffix } from '@angular/material/form-field';
-import { TrimDirective } from '../../../../../projects/common/src/lib/component-tools/trim-directive';
-import { MatInput } from '@angular/material/input';
-import { MatIconButton, MatButton } from '@angular/material/button';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import {
+  MatError,
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { Router, RouterLink } from '@angular/router';
+import { getFormControlError } from '@functions/getFormControlError';
+import { BehaviorSubject } from 'rxjs';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
+import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-    selector: 'signup',
-    templateUrl: './signup.component.html',
-    styleUrls: ['./../auth.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        NgIf,
-        LoaderComponent,
-        ReactiveFormsModule,
-        MatFormField,
-        TrimDirective,
-        MatInput,
-        MatError,
-        MatLabel,
-        MatIconButton,
-        MatSuffix,
-        MatIcon,
-        MatButton,
-        RouterLink,
-        AsyncPipe,
-    ],
+  selector: 'signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./../auth.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    NgIf,
+    LoaderComponent,
+    ReactiveFormsModule,
+    MatFormField,
+    TrimDirective,
+    MatInput,
+    MatError,
+    MatLabel,
+    MatIconButton,
+    MatSuffix,
+    MatIcon,
+    MatButton,
+    RouterLink,
+    AsyncPipe,
+  ],
 })
 export class SignupComponent {
   loading$ = new BehaviorSubject(false);
