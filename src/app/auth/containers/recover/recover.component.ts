@@ -10,9 +10,9 @@ import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { getFormControlError } from '@functions/getFormControlError';
-import { BehaviorSubject } from 'rxjs';
 import { TrimDirective } from '@lib/component-tools/trim-directive';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { LoaderComponent } from '@lib/loader/loader.component';
+import { BehaviorSubject } from 'rxjs';
 import { PasswordService } from '../../services/password.service';
 
 @Component({

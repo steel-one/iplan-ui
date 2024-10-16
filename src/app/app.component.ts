@@ -1,8 +1,8 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LoaderComponent } from '@lib/loader/loader.component';
 import { AppService } from './app.service';
-import { LoaderComponent } from 'src/common-ui/loader/loader.component';
 
 @Component({
   selector: 'app-root',

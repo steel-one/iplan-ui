@@ -17,10 +17,10 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { getFormControlError } from '@functions/getFormControlError';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { Token } from '@models/token';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { TrimDirective } from '@lib/component-tools/trim-directive';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { LoaderComponent } from '@lib/loader/loader.component';
 import { AuthService } from '../../services/auth.service';
 import { PasswordService } from '../../services/password.service';
 

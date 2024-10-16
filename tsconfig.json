@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "paths": {
       "@functions/*": ["src/common/functions/*"],
+      "@common/*": ["src/common/*"],
       "@lib/*": ["projects/common/src/lib/*"],
       "@models/*": [
         "./app/models/*", // fix TS

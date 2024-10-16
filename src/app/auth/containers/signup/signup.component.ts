@@ -17,9 +17,9 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { getFormControlError } from '@functions/getFormControlError';
-import { BehaviorSubject } from 'rxjs';
 import { TrimDirective } from '@lib/component-tools/trim-directive';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { BehaviorSubject } from 'rxjs';
+import { LoaderComponent } from '@lib/loader/loader.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

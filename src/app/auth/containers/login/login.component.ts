@@ -23,10 +23,10 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { getFormControlError } from '@functions/getFormControlError';
-import { ILoginRequest } from '@models/loginRequest';
-import { SnackBarComponent } from 'src/common-ui/snackbar/snackbar.component';
 import { TrimDirective } from '@lib/component-tools/trim-directive';
-import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { SnackBarComponent } from '@lib/snackbar/snackbar.component';
+import { ILoginRequest } from '@models/loginRequest';
+import { LoaderComponent } from '@lib/loader/loader.component';
 import { OtpComponent } from '../../components/otp-dialog/otp.component';
 import { AuthService } from '../../services/auth.service';
 
