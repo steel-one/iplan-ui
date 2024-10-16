@@ -8,16 +8,16 @@ import { TrimDirectiveModule } from '../component-tools';
 import { SearchBoxComponent } from './search-box.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    TrimDirectiveModule,
-  ],
-  declarations: [SearchBoxComponent],
-  exports: [SearchBoxComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        TrimDirectiveModule,
+        SearchBoxComponent,
+    ],
+    exports: [SearchBoxComponent],
 })
 export class SearchBoxModule {}

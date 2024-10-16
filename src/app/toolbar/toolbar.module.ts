@@ -10,17 +10,17 @@ import { RefreshService } from 'src/common/refresh.service';
 import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatTooltipModule,
-  ],
-  declarations: [ToolbarComponent],
-  exports: [ToolbarComponent],
-  providers: [RefreshService],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatTooltipModule,
+        ToolbarComponent,
+    ],
+    exports: [ToolbarComponent],
+    providers: [RefreshService],
 })
 export class ToolbarModule {}

@@ -3,11 +3,19 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
 
 @Component({
-  selector: 'confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.scss'],
+    selector: 'confirm',
+    templateUrl: './confirm.component.html',
+    styleUrls: ['./confirm.component.scss'],
+    standalone: true,
+    imports: [
+        NgIf,
+        LoaderComponent,
+        AsyncPipe,
+    ],
 })
 export class ConfirmComponent implements OnInit {
   loading$ = new BehaviorSubject(false);

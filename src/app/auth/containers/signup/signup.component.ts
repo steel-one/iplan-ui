@@ -1,15 +1,39 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { getFormControlError } from '@common/functions/getFormControlError';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { NgIf, AsyncPipe } from '@angular/common';
+import { LoaderComponent } from '../../../../common-ui/loader/loader.component';
+import { MatFormField, MatError, MatLabel, MatSuffix } from '@angular/material/form-field';
+import { TrimDirective } from '../../../../../projects/common/src/lib/component-tools/trim-directive';
+import { MatInput } from '@angular/material/input';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./../auth.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./../auth.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgIf,
+        LoaderComponent,
+        ReactiveFormsModule,
+        MatFormField,
+        TrimDirective,
+        MatInput,
+        MatError,
+        MatLabel,
+        MatIconButton,
+        MatSuffix,
+        MatIcon,
+        MatButton,
+        RouterLink,
+        AsyncPipe,
+    ],
 })
 export class SignupComponent {
   loading$ = new BehaviorSubject(false);

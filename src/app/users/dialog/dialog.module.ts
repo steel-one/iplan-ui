@@ -13,21 +13,21 @@ import { TrimDirectiveModule } from 'projects/common/src/lib/component-tools';
 import { DialogComponent } from './dialog.component';
 
 @NgModule({
-  declarations: [DialogComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    RouterModule,
-    TrimDirectiveModule,
-  ],
-  exports: [DialogComponent],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        RouterModule,
+        TrimDirectiveModule,
+        DialogComponent,
+    ],
+    exports: [DialogComponent],
 })
 export class DialogModule {}

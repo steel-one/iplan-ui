@@ -2,7 +2,8 @@ import { Directive, HostListener, ElementRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: 'input:not([no-trim])',
+    selector: 'input:not([no-trim])',
+    standalone: true,
 })
 export class TrimDirective {
   constructor(

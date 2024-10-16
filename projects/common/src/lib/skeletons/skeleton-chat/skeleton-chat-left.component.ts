@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SkeletonItemComponent } from '../skeleton-item/skeleton-item.component';
 
 @Component({
-  selector: 'skeleton-chat-left',
-  templateUrl: './skeleton-chat-left.component.html',
-  styles: [
-    `
+    selector: 'skeleton-chat-left',
+    templateUrl: './skeleton-chat-left.component.html',
+    styles: [
+        `
           :host {
             width: 280px;
           }
@@ -12,7 +13,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
             display: flex;
           }
         `,
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [SkeletonItemComponent],
 })
 export class SkeletonChatLeftComponent {}

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { DialogModule } from './dialog/dialog.module';
 import { SectionComponent } from './section/section.component';
 import { SectionModule } from './section/section.module';
-import { TableModule } from './table';
+
 
 const ROUTES = [{ path: '', component: SectionComponent }];
 
@@ -12,10 +12,9 @@ const ROUTES = [{ path: '', component: SectionComponent }];
   imports: [
     CommonModule,
     SectionModule,
-    TableModule,
     DialogModule,
     RouterModule.forChild(ROUTES),
-  ],
+],
   providers: [],
 })
 export class UsersSectionModule {}

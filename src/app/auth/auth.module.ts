@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 
 import { MatIconModule } from '@angular/material/icon';
 import { TrimDirectiveModule } from 'projects/common/src/lib/component-tools';
-import { LoaderModule } from 'src/common-ui/loader';
+
 import { AuthRoutingModule } from './auth-routing.module';
 import { OtpComponent } from './components/otp-dialog/otp.component';
 import { ConfirmComponent } from './containers/confirm/confirm.component';
@@ -21,18 +21,8 @@ import { SignupComponent } from './containers/signup/signup.component';
 import { ForRolesDirective } from './directives/for-roles.directive';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignupComponent,
-    ConfirmComponent,
-    ForRolesDirective,
-    PasswordComponent,
-    RecoverComponent,
-    OAuthComponent,
-    OtpComponent,
-  ],
-  exports: [ForRolesDirective],
-  imports: [
+    exports: [ForRolesDirective],
+    imports: [
     CommonModule,
     RouterModule,
     AuthRoutingModule,
@@ -44,7 +34,14 @@ import { ForRolesDirective } from './directives/for-roles.directive';
     MatDialogModule,
     MatIconModule,
     TrimDirectiveModule,
-    LoaderModule,
-  ],
+    LoginComponent,
+    SignupComponent,
+    ConfirmComponent,
+    ForRolesDirective,
+    PasswordComponent,
+    RecoverComponent,
+    OAuthComponent,
+    OtpComponent,
+],
 })
 export class AuthModule {}

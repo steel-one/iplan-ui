@@ -2,7 +2,8 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[forRoles]',
+    selector: '[forRoles]',
+    standalone: true,
 })
 export class ForRolesDirective {
   roles!: string[];

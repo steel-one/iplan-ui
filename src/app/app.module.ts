@@ -8,8 +8,8 @@ import {
 } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { ConfirmationDialogsModule } from 'projects/common/src/lib/confirmation-dialog';
-import { LoaderModule } from 'src/common-ui/loader';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppUpdaterService } from './app-updater.service';
 import { AppComponent } from './app.component';
@@ -27,15 +27,13 @@ import { SidebarModule } from './sidebar/sidebar.module';
     BrowserModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerImmediately',
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerImmediately',
     }),
-    LoaderModule,
     SidebarModule,
     AuthModule,
     AppRoutingModule,
-    ConfirmationDialogsModule,
-  ],
+],
   providers: [
     AppUpdaterService,
     HttpErrorHandler,

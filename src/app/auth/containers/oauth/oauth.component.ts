@@ -1,11 +1,13 @@
-import { Location } from '@angular/common';
+import { Location, JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { OAuthService } from '../../services/oauth.service';
 
 @Component({
-  templateUrl: './oauth.component.html',
-  styleUrls: ['./oauth.component.scss'],
+    templateUrl: './oauth.component.html',
+    styleUrls: ['./oauth.component.scss'],
+    standalone: true,
+    imports: [RouterLink, JsonPipe],
 })
 export class OAuthComponent implements OnInit {
   user = {};
