@@ -24,12 +24,13 @@ import { getFormControlError } from '@functions/getFormControlError';
 import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { DialogData, FormValue } from './dialog-data';
 import { DialogService } from './dialog.service';
+import { JwtAuthStrategy } from 'src/app/auth/services/jwt-auth.strategy';
 
 @Component({
   selector: 'frontend-section-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
-  providers: [DialogService],
+  providers: [DialogService, JwtAuthStrategy],
   standalone: true,
   imports: [
     ReactiveFormsModule,

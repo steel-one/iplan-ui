@@ -1,3 +1,5 @@
+import { AsyncPipe, NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, signal } from '@angular/core';
 import {
   FormBuilder,
@@ -5,14 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { catchError, filter, switchMap, tap } from 'rxjs/operators';
-
-import { AsyncPipe, NgIf } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import {
   MatError,
   MatFormField,
@@ -22,11 +18,14 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { getFormControlError } from '@functions/getFormControlError';
 import { TrimDirective } from '@lib/component-tools/trim-directive';
+import { LoaderComponent } from '@lib/loader/loader.component';
 import { SnackBarComponent } from '@lib/snackbar/snackbar.component';
 import { ILoginRequest } from '@models/loginRequest';
-import { LoaderComponent } from '@lib/loader/loader.component';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, filter, switchMap, tap } from 'rxjs/operators';
 import { OtpComponent } from '../../components/otp-dialog/otp.component';
 import { AuthService } from '../../services/auth.service';
 

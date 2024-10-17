@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from '@models/user';
 import { map, shareReplay } from 'rxjs/operators';
 import { AuthService } from '../auth/services/auth.service';
-import { DialogComponent } from '../users/dialog';
+import { DialogComponent } from '../users/dialog/dialog.component';
 
 @Injectable()
 export class ToolbarService {

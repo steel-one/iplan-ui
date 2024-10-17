@@ -4,12 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-
-import { MatIconModule } from '@angular/material/icon';
-
-import { TrimDirective } from 'projects/common/src/lib/component-tools/trim-directive';
+import { TrimDirective } from '@lib/component-tools/trim-directive';
 import { AuthRoutingModule } from './auth-routing.module';
 import { OtpComponent } from './components/otp-dialog/otp.component';
 import { ConfirmComponent } from './containers/confirm/confirm.component';

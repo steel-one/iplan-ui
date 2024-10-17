@@ -1,19 +1,20 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RefreshService } from '@common/refresh.service';
-import { SectionService } from './section.service';
-import { SimpleToolbarNewComponent } from '@lib/simple-toolbar/simple-toolbar.component';
-import { SearchBoxComponent } from '@lib/search-box/search-box.component';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { NgIf, AsyncPipe } from '@angular/common';
+import { RefreshService } from '@common/refresh.service';
+import { SearchBoxComponent } from '@lib/search-box/search-box.component';
+import { SimpleToolbarNewComponent } from '@lib/simple-toolbar/simple-toolbar.component';
 import { SkeletonTableComponent } from '@lib/skeletons/skeleton-table/skeleton-table.component';
+import { JwtAuthStrategy } from 'src/app/auth/services/jwt-auth.strategy';
 import { TableComponent } from '../table/table.component';
+import { SectionService } from './section.service';
 
 @Component({
   selector: 'frontend-section',
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SectionService],
+  providers: [SectionService, JwtAuthStrategy, RefreshService],
   standalone: true,
   imports: [
     SimpleToolbarNewComponent,
@@ -27,8 +28,5 @@ import { TableComponent } from '../table/table.component';
   ],
 })
 export class SectionComponent {
-  constructor(
-    public srv: SectionService,
-    public refreshSrv: RefreshService,
-  ) {}
+  constructor(public srv: SectionService) {}
 }

@@ -25,14 +25,15 @@ import {
   switchMap,
 } from 'rxjs/operators';
 import { JwtAuthStrategy } from 'src/app/auth/services/jwt-auth.strategy';
-import { DialogComponent, DialogData, FormValue } from '../dialog';
+import { DialogData, FormValue } from '../dialog/dialog-data';
+import { DialogComponent } from '../dialog/dialog.component';
 import { TableItem } from '../table/table-item.model';
 import { config } from './../../config';
 import {
   QueryParams,
   queryParamsManipulation,
 } from './query-params-manipulation';
-import { RefreshService } from './refresh.service';
+import { RefreshService } from '@common/refresh.service';
 
 export interface CmptData {
   nodes: TableItem[];

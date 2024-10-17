@@ -1,30 +1,38 @@
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { ToolbarService } from './toolbar.service';
-import { MatToolbar } from '@angular/material/toolbar';
-import { NgIf, AsyncPipe } from '@angular/common';
 import { MatButton } from '@angular/material/button';
-import { MatMenuTrigger, MatMenu, MatMenuContent, MatMenuItem } from '@angular/material/menu';
-import { MatTooltip } from '@angular/material/tooltip';
 import { MatIcon } from '@angular/material/icon';
+import {
+  MatMenu,
+  MatMenuContent,
+  MatMenuItem,
+  MatMenuTrigger,
+} from '@angular/material/menu';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatTooltip } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { RefreshService } from '@common/refresh.service';
+import { ToolbarService } from './toolbar.service';
 
 @Component({
-    selector: 'toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss'],
-    providers: [ToolbarService],
-    standalone: true,
-    imports: [
-        MatToolbar,
-        NgIf,
-        MatButton,
-        MatMenuTrigger,
-        MatTooltip,
-        MatIcon,
-        MatMenu,
-        MatMenuContent,
-        MatMenuItem,
-        AsyncPipe,
-    ],
+  selector: 'toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss'],
+  providers: [ToolbarService, RefreshService],
+  standalone: true,
+  imports: [
+    MatToolbar,
+    NgIf,
+    MatButton,
+    MatMenuTrigger,
+    MatTooltip,
+    MatIcon,
+    MatMenu,
+    MatMenuContent,
+    MatMenuItem,
+    AsyncPipe,
+    RouterModule,
+  ],
 })
 export class ToolbarComponent {
   constructor(public srv: ToolbarService) {}
