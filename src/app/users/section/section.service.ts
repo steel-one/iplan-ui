@@ -5,6 +5,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SortDirection } from '@angular/material/sort';
+import { RefreshService } from '@common/refresh.service';
 import { User } from '@models/user';
 import { ConfirmationDialogComponent } from 'projects/common/src/lib/confirmation-dialog';
 import {
@@ -33,7 +34,6 @@ import {
   QueryParams,
   queryParamsManipulation,
 } from './query-params-manipulation';
-import { RefreshService } from '@common/refresh.service';
 
 export interface CmptData {
   nodes: TableItem[];
@@ -125,8 +125,8 @@ export class SectionService {
   private _getData(variables: QueryParams) {
     const params = new HttpParams()
       .set('search', variables.search)
-      .set('paginate', JSON.stringify({ page: 1, perPage: 10 }))
-      .set('orderBy', JSON.stringify({ sort: 'firstName', order: 'asc' }));
+      .set('paginate', JSON.stringify(variables.paginate))
+      .set('orderBy', JSON.stringify(variables.orderBy));
 
     const token = this.jwt.getToken();
 
